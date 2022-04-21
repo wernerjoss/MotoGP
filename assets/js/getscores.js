@@ -1,7 +1,8 @@
-function get_tipresults() 
+function get_tipscores() 
 {
 	var users = {};
 	var races = {};
+	var scores = {};
 	$.ajax({
         type: "GET", //we are using GET method to get all record from the server
         url: 'ajax/getusers.php', // get the route value
@@ -17,6 +18,7 @@ function get_tipresults()
 	            $.each(response, function(key,value) {
 	        		users[value.UID] = value.Vorname + ' ' + value.Name;
 			    });
+				//	console.log(users);
 	        } else {
             	html += '<div class="alert alert-warning">';
 				html += 'No records found!';
@@ -40,6 +42,7 @@ function get_tipresults()
 	            	// Our results list template
 					races[value.EID] = value.Ort;
 			    });
+				// console.log(races);
 	        } else {
             	html += '<div class="alert alert-warning">';
 				html += 'No records found!';
@@ -47,10 +50,31 @@ function get_tipresults()
             }
         }
     });
-	// get Tips
+	// get scores
 	$.ajax({
         type: "GET", //we are using GET method to get all record from the server
-        url: 'ajax/getresults.php?p=tips', // get the route value
+        url: 'ajax/calcscores.php', // get the route value
+        async: false,
+		success: function (response) {//once the request successfully process to the server side it will return result here
+            // Parse the json result
+        	response = JSON.parse(response);
+
+            if(response.length) {
+                $.each(response, function(key,value) {
+					//	scores[value.UID][value.EID] = value.Scores;
+				});
+	        } else {
+            	html += '<div class="alert alert-warning">';
+				html += 'No records found!';
+				html += '</div>';
+            }
+            // 	Insert the HTML Template and display all results records
+			//	$("#scores-list").html(html);
+        }
+    });
+	$.ajax({
+        type: "GET", //we are using GET method to get all record from the server
+        url: 'ajax/getscores.php', // get the route value
         async: false,
 		success: function (response) {//once the request successfully process to the server side it will return result here
             // Parse the json result
@@ -61,18 +85,16 @@ function get_tipresults()
             if(response.length) {
             	html += '<div class="list-group">';
 				html += '<table>'
-				html += "<tr><th>" + 'Event' +'</th><th>'+ 'Vorname Name' + '</th><th>' + 'P1' + '</th><th>' + 'P2' + '</th><th>' + 'P3' + "</th></tr>";
+				html += "<tr><th>" + 'Event' +'</th><th>'+ 'Vorname Name' + '</th><th>' + 'Punkte' + "</th></tr>";
 	            // Loop the parsed JSON
-				var stop = false;
+				console.log(response);
+	            var stop = false;
 	            $.each(response, function(key,value) {
-	            	// Our results list template
-					if (stop === false) {
-						html += "<tr><td>" + races[value.EID] +'</td><td>' + users[value.UID] + '</td><td>' + value.P1 + '</td><td>' + value.P2 + '</td><td>' + value.P3 + "</td></tr>";
-					}
-					if (value.P1 === null) {
-						stop = true;
-					}
-	            });
+					// 	Our scores list template
+					//	html += "<tr><td>" + users[value.UID] + '</td><td>' + races[value.EID] +'</td><td>' + value.Score + "</td></tr>";
+					if (value.Score > 0)
+						html += "<tr><td>" + races[value.EID] + '</td><td>' + users[value.UID] +'</td><td>' + value.Score + "</td></tr>";
+				});
 	            html += '</table>'
 	            html += '</div>';
             } else {
@@ -81,7 +103,7 @@ function get_tipresults()
 				html += '</div>';
             }
             // Insert the HTML Template and display all results records
-			$("#tips-list").html(html);
+			$("#scores-list").html(html);
         }
     });
 	/*
@@ -93,6 +115,6 @@ function get_tipresults()
 $(document).ready(function() {
 
 	// Get all results records
-	get_tipresults();
+	get_tipscores();
 
 });

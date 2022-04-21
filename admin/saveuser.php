@@ -7,13 +7,7 @@
 	$password = $request['Passwort'];
 
 	include "../include/connect.php";
-	/*
-	$db_host = "mysql"; //set the servername
-	$db_user = "motogp"; //set the server username
-	$db_pw = "motogp"; // set the server password (you must put password here if your using live server)
-	$db_name = "motogpdb"; // set the table name
-	*/
-
+	
 	$mysqli = new mysqli($db_host, $db_user, $db_pw, $db_name);
 
 	if ($mysqli->connect_errno) {

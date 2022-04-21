@@ -3,6 +3,7 @@ function getresults()
 	// Ajax config
 	var EID;
 	var UID;
+	var deadline;
 	$.ajax({
         type: "GET", //we are using GET method to get all record from the server
         url: 'ajax/getresults.php', // get the route value
@@ -22,6 +23,7 @@ function getresults()
 	            $.each(response, function(key,value) {
 	            	// Our results list template
 					if (stop === false) {
+						deadline = value.Deadline;
 						dld = value.Deadline.split(" ");
 						evdate = dld[0];	//	value.Deadline;
 						html += "<tr><td>" + value.Ort +'</td><td>'+ evdate + '</td><td>' + value.P1 + '</td><td>' + value.P2 + '</td><td>' + value.P3 + "</td></tr>";
@@ -41,6 +43,16 @@ function getresults()
 				html += '</div>';
             }
             // Insert the HTML Template and display all results records
+			now = moment();
+			/*
+			console.log("Now:", now);
+			console.log("Deadline", moment(deadline));
+			*/
+			isAfter = now.isAfter(deadline);
+			console.log("isAfter:", isAfter);
+			if (isAfter) {
+				$("#TipForm").attr("hidden",true);
+			}
 			$("#Event").html(lastEvent);
         	$("#results-list").html(html);
 			html = '<input type="hidden" name="EID" value="' + EID + '"></input><input type="hidden" name="Nick" value="' + $("#Nick").text() + '"></input>';

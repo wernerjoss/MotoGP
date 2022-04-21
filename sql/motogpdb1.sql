@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Erstellungszeit: 20. Apr 2022 um 18:57
+-- Erstellungszeit: 21. Apr 2022 um 20:03
 -- Server-Version: 8.0.27
 -- PHP-Version: 7.4.4
 
@@ -120,6 +120,44 @@ CREATE TABLE `MGP_scores` (
   `Score` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Daten für Tabelle `MGP_scores`
+--
+
+INSERT INTO `MGP_scores` (`UID`, `EID`, `Score`) VALUES
+(1, 1, 0),
+(2, 1, 0),
+(3, 1, 0),
+(4, 1, 0),
+(5, 1, 1),
+(6, 1, 0),
+(7, 1, 0),
+(8, 1, 0),
+(1, 2, 0),
+(2, 2, 0),
+(3, 2, 0),
+(4, 2, 0),
+(5, 2, 1),
+(6, 2, 0),
+(7, 2, 0),
+(8, 2, 0),
+(1, 3, 2),
+(2, 3, 0),
+(3, 3, 0),
+(4, 3, 0),
+(5, 3, 1),
+(6, 3, 0),
+(7, 3, 0),
+(8, 3, 0),
+(1, 4, 0),
+(2, 4, 0),
+(3, 4, 0),
+(4, 4, 0),
+(5, 4, 0),
+(6, 4, 0),
+(7, 4, 0),
+(8, 4, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -130,9 +168,9 @@ DROP TABLE IF EXISTS `MGP_tips`;
 CREATE TABLE `MGP_tips` (
   `EID` tinyint NOT NULL,
   `UID` tinyint NOT NULL,
-  `P1` tinyint NOT NULL,
-  `P2` tinyint NOT NULL,
-  `P3` tinyint NOT NULL
+  `P1` tinyint DEFAULT NULL,
+  `P2` tinyint DEFAULT NULL,
+  `P3` tinyint DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -148,6 +186,18 @@ INSERT INTO `MGP_tips` (`EID`, `UID`, `P1`, `P2`, `P3`) VALUES
 (3, 5, 41, 10, 20),
 (4, 1, 63, 89, 23),
 (4, 5, 89, 43, 93);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `MGP_totals`
+--
+
+DROP TABLE IF EXISTS `MGP_totals`;
+CREATE TABLE `MGP_totals` (
+  `UID` tinyint NOT NULL,
+  `Score` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -194,12 +244,6 @@ ALTER TABLE `MGP_events`
 --
 ALTER TABLE `MGP_riders`
   ADD PRIMARY KEY (`RID`);
-
---
--- Indizes für die Tabelle `MGP_scores`
---
-ALTER TABLE `MGP_scores`
-  ADD PRIMARY KEY (`UID`);
 
 --
 -- Indizes für die Tabelle `MGP_users`
