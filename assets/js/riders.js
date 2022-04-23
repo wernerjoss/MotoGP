@@ -14,14 +14,14 @@ function getresults()
             if(response.length) {
             	html += '<div class="list-group">';
 	            // Loop the parsed JSON
-	            $.each(response, function(key,value) {
+	            html += '<table>';
+				$.each(response, function(key,value) {
 	            	// Our results list template
 					if (value.P1 !== null) {
-						html += '<a href="#" class="list-group-item list-group-item-action">';
-						html += "<p>" + value.RID +' '+ value.Vorname + ' ' + value.Name + "</p>";
-						html += '</a>';
+						html += '<tr><td>' + value.RID + '</td><td>' + value.Vorname + '</td><td>' + value.Name + '</td><td></tr>';
 					}
 	            });
+				html += '</table>';
 	            html += '</div>';
             } else {
             	html += '<div class="alert alert-warning">';

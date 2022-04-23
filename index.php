@@ -4,12 +4,9 @@
 	<meta charset="UTF-8">
 	<title>Ergebnisse MotoGP Tipspiel</title>
 
-  	<!-- Bootstrap CSS CDN -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	<!-- local bootstrap
-	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-  	-->
-  	<!-- Page CSS -->
+  	<!-- Bootstrap CSS local -->
+	<link rel="stylesheet" href="assets/bootstrap-4.4.1/css/bootstrap.min.css">
+	<!-- Page CSS -->
   	<link rel="stylesheet" href="assets/css/styles.css">
 	
 </head>
@@ -38,10 +35,11 @@
 			<div id="TipForm">
 				<div class="row">
 					<div class="col-md-4">
-						<h3>Hallo <span id="Nick" style="display:none;">'.$Nickname.'</span></h3>
+						<span id="Nickname" style="display:none">';echo $Nickname;echo '</span>
+						<h3>Hallo <span id="Vorname"></span></h3>
 						<h3>Dein Tip für MotoGP Race</h3><h3><span id="Event"></span></h3>
 						<form action="ajax/savetips.php" id="form">
-							<div id="EidUid"></div>
+							<span id="EidUid" style="display:none"></span>
 							<div class="form-group">
 								<label for="P1">P1</label>
 								<input class="form-control" type="text" name="P1">
@@ -54,7 +52,7 @@
 								<label for="P3">P3</label>
 								<input class="form-control" type="text" name="P3">
 							</div>
-							<button type="button" class="btn btn-primary" id="btnSubmit">Submit</button>
+							<button type="button" class="btn btn-primary" id="btnSubmit">Absenden</button>
 						</form>
 					</div>
 				</div>
@@ -80,19 +78,25 @@
 				<div id="scores-list"></div>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-md-8">
+				<h3>Gesamt Punktestand:</h3>
+				<div id="ranking-list"></div>
+			</div>
+		</div>
 	</div>
 	<!-- Must put our javascript files here to fast the page loading -->
-	<!-- jQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<!-- Bootstrap JS -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<!-- jQuery library local -->
+	<script src="assets/js/jquery-3.6.0.min.js"></script>
+	<!-- Bootstrap JS local -->
+	<script src="assets/bootstrap-4.4.1/js/bootstrap.min.js"></script>
+	<!-- Moment JS local -->
 	<script src="assets/js/moment.js"></script>
-	<!-- Page Script -->
-	<script src="assets/js/results.js"></script>
-	<!--
-	-->
+	<!-- Page Scripts -->
+	<script src="assets/js/getresults.js"></script>
 	<script src="assets/js/gettips.js"></script>
 	<script src="assets/js/getscores.js"></script>
+	<script src="assets/js/gettotals.js"></script>
 	<script src="assets/js/savetips.js"></script>
 	
 </body>

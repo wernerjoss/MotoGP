@@ -85,7 +85,7 @@ function get_tipscores()
             if(response.length) {
             	html += '<div class="list-group">';
 				html += '<table>'
-				html += "<tr><th>" + 'Event' +'</th><th>'+ 'Vorname Name' + '</th><th>' + 'Punkte' + "</th></tr>";
+				html += "<tr><th>" + 'Event' +'</th><th>'+ 'Name' + '</th><th>' + 'Punkte' + "</th></tr>";
 	            // Loop the parsed JSON
 				console.log(response);
 	            var stop = false;

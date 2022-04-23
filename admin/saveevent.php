@@ -15,9 +15,10 @@
 	}
 
 	// Set the INSERT SQL data
+	/*
 	$sql = "INSERT INTO MGP_users (UID, Name, Nickname, Vorname, Email, Passwort)
-	VALUES (NULL,'".$name."', '".$firstname."','".$nickname."', '".$email."', '".$password."')";
-
+		VALUES (NULL,'".$name."', '".$firstname."','".$nickname."', '".$email."', '".$password."')";
+	*/
 	$sql = "UPDATE MGP_events SET P1=".$p1." , P2=".$p2.", P3=".$p3." WHERE EID=".$eid;
 	echo $sql;
 	// Process the query so that we will save the date of birth

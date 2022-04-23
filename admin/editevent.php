@@ -5,7 +5,7 @@
 	<title>Teilnehmer MotoGP Tipspiel</title>
 
   	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../assets/bootstrap-4.4.1/css/bootstrap.min.css">
   	
   	<!-- Page CSS -->
   	<link rel="stylesheet" href="../assets/css/styles.css">
@@ -57,16 +57,14 @@
 
 	<!-- Must put our javascript files here to fast the page loading -->
 	
-	<!-- jQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<!-- Popper JS -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-	<!-- Bootstrap JS -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<!-- jQuery library local -->
+	<script src="../assets/js/jquery-3.6.0.min.js"></script>
+	<!-- Bootstrap JS local -->
+	<script src="../assets/bootstrap-4.4.1/js/bootstrap.min.js"></script>
 	<!-- Page Script -->
 	<!--
 	-->
-	<script src="../assets/js/eventedit.js"></script>
+	<script src="../assets/js/editevent.js"></script>
 	
 </body>
   

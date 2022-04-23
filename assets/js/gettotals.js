@@ -1,7 +1,6 @@
-function get_tipresults() 
+function get_totals() 
 {
-	var users = {};
-	var races = {};
+	var users = {};	// get Vorname + Name for all users
 	$.ajax({
         type: "GET", //we are using GET method to get all record from the server
         url: 'ajax/getusers.php', // get the route value
@@ -17,6 +16,7 @@ function get_tipresults()
 	            $.each(response, function(key,value) {
 	        		users[value.UID] = value.Vorname + ' ' + value.Name;
 			    });
+				//	console.log(users);
 	        } else {
             	html += '<div class="alert alert-warning">';
 				html += 'No records found!';
@@ -24,33 +24,10 @@ function get_tipresults()
             }
         }
     });
-	// get events
+	// get totals
 	$.ajax({
         type: "GET", //we are using GET method to get all record from the server
-        url: 'ajax/getresults.php?p=events', // get the route value
-        async: false,
-		success: function (response) {//once the request successfully process to the server side it will return result here
-            // Parse the json result
-        	response = JSON.parse(response);
-
-            // Check if there is available records
-            if(response.length) {
-                // Loop the parsed JSON
-	            $.each(response, function(key,value) {
-	            	// Our results list template
-					races[value.EID] = value.Ort;
-			    });
-	        } else {
-            	html += '<div class="alert alert-warning">';
-				html += 'No records found!';
-				html += '</div>';
-            }
-        }
-    });
-	// get Tips
-	$.ajax({
-        type: "GET", //we are using GET method to get all record from the server
-        url: 'ajax/getresults.php?p=tips', // get the route value
+        url: 'ajax/calctotals.php', // get the route value
         async: false,
 		success: function (response) {//once the request successfully process to the server side it will return result here
             // Parse the json result
@@ -61,18 +38,14 @@ function get_tipresults()
             if(response.length) {
             	html += '<div class="list-group">';
 				html += '<table>'
-				html += "<tr><th>" + 'Event' +'</th><th>'+ 'Name' + '</th><th>' + 'P1' + '</th><th>' + 'P2' + '</th><th>' + 'P3' + "</th></tr>";
+				html += "<tr><th>" + 'Name' + '</th><th>' + 'Punkte' + "</th></tr>";
 	            // Loop the parsed JSON
-				var stop = false;
+				console.log(response);
+	            var stop = false;
 	            $.each(response, function(key,value) {
-	            	// Our results list template
-					if (stop === false) {
-						html += "<tr><td>" + races[value.EID] +'</td><td>' + users[value.UID] + '</td><td>' + value.P1 + '</td><td>' + value.P2 + '</td><td>' + value.P3 + "</td></tr>";
-					}
-					if (value.P1 === null) {
-						stop = true;
-					}
-	            });
+					if (value.Score > 0)
+						html += "<tr><td>" + users[value.UID] + '</td><td>' + value.Score + "</td></tr>";
+				});
 	            html += '</table>'
 	            html += '</div>';
             } else {
@@ -81,18 +54,14 @@ function get_tipresults()
 				html += '</div>';
             }
             // Insert the HTML Template and display all results records
-			$("#tips-list").html(html);
+			$("#ranking-list").html(html);
         }
     });
-	/*
-	console.log("Races:", races);
-	console.log("Users:", users);
-	*/
 }
 
 $(document).ready(function() {
 
 	// Get all results records
-	get_tipresults();
+	get_totals();
 
 });

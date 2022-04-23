@@ -8,6 +8,10 @@
 	}
 	$param = $_GET["p"];	// decide what data to retrieve based on call
 	switch($param) {
+		case 'users':
+			// Select Events data
+			$sql = "SELECT * FROM MGP_users";
+			break;
 		case 'events':
 			// Select Events data
 			$sql = "SELECT * FROM MGP_events";

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Erstellungszeit: 20. Apr 2022 um 18:57
+-- Erstellungszeit: 22. Apr 2022 um 08:42
 -- Server-Version: 8.0.27
 -- PHP-Version: 7.4.4
 
@@ -120,7 +120,6 @@ CREATE TABLE `MGP_scores` (
   `Score` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- --------------------------------------------------------
 
 --
 -- Tabellenstruktur für Tabelle `MGP_tips`
@@ -128,26 +127,24 @@ CREATE TABLE `MGP_scores` (
 
 DROP TABLE IF EXISTS `MGP_tips`;
 CREATE TABLE `MGP_tips` (
+  `TID` smallint NOT NULL,
   `EID` tinyint NOT NULL,
   `UID` tinyint NOT NULL,
-  `P1` tinyint NOT NULL,
-  `P2` tinyint NOT NULL,
-  `P3` tinyint NOT NULL
+  `P1` tinyint DEFAULT NULL,
+  `P2` tinyint DEFAULT NULL,
+  `P3` tinyint DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+
 --
--- Daten für Tabelle `MGP_tips`
+-- Tabellenstruktur für Tabelle `MGP_totals`
 --
 
-INSERT INTO `MGP_tips` (`EID`, `UID`, `P1`, `P2`, `P3`) VALUES
-(1, 1, 93, 36, 89),
-(1, 5, 23, 89, 93),
-(2, 1, 20, 33, 63),
-(2, 5, 5, 20, 63),
-(3, 1, 41, 89, 44),
-(3, 5, 41, 10, 20),
-(4, 1, 63, 89, 23),
-(4, 5, 89, 43, 93);
+DROP TABLE IF EXISTS `MGP_totals`;
+CREATE TABLE `MGP_totals` (
+  `UID` tinyint NOT NULL,
+  `Score` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -166,20 +163,6 @@ CREATE TABLE `MGP_users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Daten für Tabelle `MGP_users`
---
-
-INSERT INTO `MGP_users` (`UID`, `Name`, `Vorname`, `Nickname`, `Email`, `Passwort`) VALUES
-(1, 'Joss', 'Werner', 'Gegge', 'werner@hoernerfranzracing.de', 't1242t'),
-(2, 'Rendier', 'Udo', 'Uedoh', 'chezmoto32@gmail.com', '1234'),
-(3, 'Metz', 'Bodo', 'BodoM', 'bodo.metz@gmx.de', '1234'),
-(4, 'Hauke', 'Christian', 'ChrisH', 'chris.hauke@gmx.de', '1234'),
-(5, 'Friedrich', 'Wolfgang', 'Pepsi', 'wolfgang.d.friedrich@alice-dsl.net', '1234'),
-(6, 'Treuz', 'Jochen', 'JochenT', 'info@treuz.de', '1234'),
-(7, 'Staengle', 'Rene', 'ReneS', 'rene.staengle@gmail.com', '1234'),
-(8, 'Beaujean', 'Damian', 'Dammi', 'beaujean@ph1.uni-koeln.de', '1234');
-
---
 -- Indizes der exportierten Tabellen
 --
 
@@ -196,10 +179,10 @@ ALTER TABLE `MGP_riders`
   ADD PRIMARY KEY (`RID`);
 
 --
--- Indizes für die Tabelle `MGP_scores`
+-- Indizes für die Tabelle `MGP_tips`
 --
-ALTER TABLE `MGP_scores`
-  ADD PRIMARY KEY (`UID`);
+ALTER TABLE `MGP_tips`
+  ADD PRIMARY KEY (`TID`);
 
 --
 -- Indizes für die Tabelle `MGP_users`
@@ -216,6 +199,18 @@ ALTER TABLE `MGP_users`
 --
 ALTER TABLE `MGP_events`
   MODIFY `EID` tinyint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT für Tabelle `MGP_riders`
+--
+ALTER TABLE `MGP_riders`
+  MODIFY `RID` tinyint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
+
+--
+-- AUTO_INCREMENT für Tabelle `MGP_tips`
+--
+ALTER TABLE `MGP_tips`
+  MODIFY `TID` smallint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT für Tabelle `MGP_users`

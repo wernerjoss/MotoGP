@@ -18,7 +18,7 @@
 		if ($verbose)	echo "numUsers:".$numUsers."<br>";
 		$Users = $result->fetch_all(MYSQLI_ASSOC);
 		foreach ($Users as $User)	{
-			if ($verbose)	{ echo print_r($User);echo"<br>"; }
+			//	if ($verbose)	{ echo print_r($User);echo"<br>"; }
 		}
 	}
 	//	get all Race Infos (Name, Date, Result)
@@ -30,22 +30,22 @@
 		if ($verbose)	echo "numEvents:".$numEvents."<br>";
 		$Events = $result->fetch_all(MYSQLI_ASSOC);
 		foreach ($Events as $Event)	{
-			if ($verbose)	{ echo print_r($Event);echo"<br>"; }
+			//	if ($verbose)	{ echo print_r($Event);echo"<br>"; }
 		}
 	}
-	// get Tips from Users
-	$sql = "SELECT * from MGP_tips";
+	// get Scores from Users
+	$sql = "SELECT * from MGP_scores";
 	$result = $mysqli->query($sql);
-	$numTips = mysqli_num_rows($result);
-	$Tips = array();
+	$numScores = mysqli_num_rows($result);
+	$Totals = array();
 	
-	if ($numTips>0) {
-		if ($verbose)	echo "numTips:".$numTips."<br>";
-		$Tips = $result->fetch_all(MYSQLI_ASSOC);
-		foreach ($Tips as $Tip)	{
-			if ($verbose)	{ echo print_r($Tip["EID"]);echo" ";echo print_r($Tip["UID"]);echo" "; }
+	if ($numScores>0) {
+		if ($verbose)	echo "numScores:".$numScores."<br>";
+		$Scores = $result->fetch_all(MYSQLI_ASSOC);
+		foreach ($Scores as $Score)	{
+			//	if ($verbose)	{ echo print_r($Score);echo"<br>"; }
 		}
-		if ($verbose)	echo "<br>";
+		//	if ($verbose)	echo "<br>";
 	}
 	//	return;
 	
@@ -53,27 +53,39 @@
 	for ($UID = 0; $UID < $numUsers; $UID++) {
 		$Totals[$UID] = 0;
 	}
-	for ($EID = 0; $EID < $numEvents; $EID ++) {
-		if ($verbose)	echo "<br>EventNr:$EID Ort:".$Events[$EID]["Ort"]."<br>";
-		for ($UID = 0; $UID < $numUsers; $UID++) {
-			foreach ($Tips as $Tip) {
-				if (($Tip["UID"] == ($UID+1)) && ($Tip["EID"] == ($EID+1))) {
-					if ($verbose) echo "UserNr:$UID ".$Users[$UID]["Name"]." P1:".$Tip["P1"]." P2:".$Tip["P2"]." P3:".$Tip["P3"]."<br>";
-					if (intval($Tip["P1"]) == intval($Events[$EID]["P1"]))	{
-						$Totals[$UID] += 1;
-					}
-					if (intval($Tip["P2"]) == intval($Events[$EID]["P2"]))	{
-						$Totals[$UID] += 1;
-					}
-					if (intval($Tip["P3"]) == intval($Events[$EID]["P3"]))	{
-						$Totals[$UID] += 1;
-					}
-					if ($Totals[$UID] > 0) if ($verbose)	echo print("Score: ".$Totals[$UID]."<br>");
-				}
-			}
-		}
+	$sql = "TRUNCATE TABLE MGP_totals";
+	$result = $mysqli->query($sql);
+	foreach ($Scores as $Score) {
+		$UID = $Score["UID"] - 1;
+		if ($Score["Score"] > 0)
+			$Totals["$UID"] += $Score["Score"];
 	}
-	if ($verbose)	echo print_r($Totals);
+	if ($verbose)	{
+		echo print_r($Totals);
+		echo json_encode($Totals);
+	}
+	//	return;
+	for ($UID = 1; $UID <= $numUsers; $UID ++) {
+		$uid = $UID - 1;
+		$tscore = $Totals["$uid"];
+		/*
+		echo "UID:".$uid."<br>";
+		echo "Tscore:".$tscore."<br>";
+		*/
+		$sql = "INSERT INTO MGP_totals (UID, Score)		VALUES ('".$UID."','".$tscore."')";
+		if ($verbose)	echo "SQL:".$sql."<br>";
+		$result = $mysqli->query($sql);
+	}
+	//	return;
+	//	echo json_encode($Totals);
+	
+	$sql = "SELECT * from MGP_totals ORDER by Score DESC";
+	//	echo $sql;
+	$result = $mysqli->query($sql);
+	$numTotals = mysqli_num_rows($result);
+	if ($numTotals>0) {
+		$Totals = $result->fetch_all(MYSQLI_ASSOC);
+	}
 	echo json_encode($Totals);
 	
 	if ($mysqli->query($sql)) {

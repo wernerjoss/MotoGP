@@ -1,3 +1,33 @@
+function getusers() 
+{
+	$.ajax({
+        type: "GET", //we are using GET method to get all record from the server
+        url: 'ajax/getresults.php?p=users', // get the route value
+        async: false,
+		success: function (response) {//once the request successfully process to the server side it will return result here
+            // Parse the json result
+        	response = JSON.parse(response);
+
+            // Check if there is available records
+            if(response.length) {
+                // Loop the parsed JSON
+				Vorname = 'Gast';
+				Nickname = $(Nickname).text();
+				//	console.log("Nickname:", Nickname);
+	            $.each(response, function(key,value) {
+	            	if (Nickname == value.Nickname)
+						Vorname = value.Vorname;
+			    });
+				//	console.log("Vorname", Vorname);
+				$("#Vorname").html(Vorname);
+	        } else {
+            	html += '<div class="alert alert-warning">';
+				html += 'No records found!';
+				html += '</div>';
+            }
+        }
+    });
+}
 function getresults() 
 {
 	// Ajax config
@@ -55,7 +85,7 @@ function getresults()
 			}
 			$("#Event").html(lastEvent);
         	$("#results-list").html(html);
-			html = '<input type="hidden" name="EID" value="' + EID + '"></input><input type="hidden" name="Nick" value="' + $("#Nick").text() + '"></input>';
+			html = '<input type="hidden" name="EID" value="' + EID + '"></input><input type="hidden" name="Nickname" value="' + $("#Nickname").text() + '"></input>';
 			$("#EidUid").html(html);
 		}
     });
@@ -64,6 +94,7 @@ function getresults()
 $(document).ready(function() {
 
 	// Get all results records
+	getusers();
 	getresults();
 
 });
