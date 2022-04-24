@@ -34,26 +34,31 @@
 			echo'
 			<div id="TipForm">
 				<div class="row">
-					<div class="col-md-4">
+					<div class="col-md-6">
 						<span id="Nickname" style="display:none">';echo $Nickname;echo '</span>
 						<h3>Hallo <span id="Vorname"></span></h3>
-						<h3>Dein Tip für MotoGP Race</h3><h3><span id="Event"></span></h3>
+						<h3>Dein Tip für MotoGP Race</h3><h3><span id="Event"></span></h3><h3><span id="Deadline"></span></h3>
 						<form action="ajax/savetips.php" id="form">
 							<span id="EidUid" style="display:none"></span>
-							<div class="form-group">
+							<div id="TipForm" class="row">
+							<div class="col-sm-4">
 								<label for="P1">P1</label>
 								<input class="form-control" type="text" name="P1">
 							</div>
-							<div class="form-group">
+							<div class="col-sm-4">
 								<label for="P2">P2</label>
 								<input class="form-control" type="text" name="P2">
 							</div>
-							<div class="form-group">
+							<div class="col-sm-4">
 								<label for="P3">P3</label>
 								<input class="form-control" type="text" name="P3">
 							</div>
-							<button type="button" class="btn btn-primary" id="btnSubmit">Absenden</button>
+								<div class="col-sm-4" style="margin-top: 1em;">
+								<button type="button" class="btn btn-primary" id="btnSubmit">Absenden</button>
+								</div>
+							</div>
 						</form>
+						
 					</div>
 				</div>
 				<p></p>

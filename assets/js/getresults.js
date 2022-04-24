@@ -59,7 +59,7 @@ function getresults()
 						html += "<tr><td>" + value.Ort +'</td><td>'+ evdate + '</td><td>' + value.P1 + '</td><td>' + value.P2 + '</td><td>' + value.P3 + "</td></tr>";
 						if (value.P1 === null) {
 							stop = true;
-							lastEvent = value.Ort + ' ' + evdate;
+							lastEvent = value.Ort;	// + ' ' + evdate;
 							EID = value.EID;
 						}
 					}
@@ -79,11 +79,12 @@ function getresults()
 			console.log("Deadline", moment(deadline));
 			*/
 			isAfter = now.isAfter(deadline);
-			console.log("isAfter:", isAfter);
+			//	console.log("isAfter:", isAfter);
 			if (isAfter) {
 				$("#TipForm").attr("hidden",true);
 			}
 			$("#Event").html(lastEvent);
+        	$("#Deadline").html("Deadline: " + deadline);
         	$("#results-list").html(html);
 			html = '<input type="hidden" name="EID" value="' + EID + '"></input><input type="hidden" name="Nickname" value="' + $("#Nickname").text() + '"></input>';
 			$("#EidUid").html(html);
