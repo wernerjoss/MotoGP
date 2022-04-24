@@ -42,27 +42,27 @@ CREATE TABLE `MGP_events` (
 --
 
 INSERT INTO `MGP_events` (`EID`, `Ort`, `Deadline`, `P1`, `P2`, `P3`) VALUES
-(1, 'Doha', '2022-03-06 10:00:00', 23, 33, 44),
-(2, 'Mandalika', '2022-03-20 10:00:00', 88, 20, 5),
-(3, 'Termas', '2022-04-03 10:00:00', 41, 89, 42),
-(4, 'Austin', '2022-04-10 10:00:00', 23, 42, 43),
-(5, 'Portimao', '2022-04-24 10:00:00', NULL, NULL, NULL),
-(6, 'Jerez', '2022-05-01 10:00:00', NULL, NULL, NULL),
-(7, 'LeMans', '2022-05-15 10:00:00', NULL, NULL, NULL),
-(8, 'Mugello', '2022-05-29 10:00:00', NULL, NULL, NULL),
-(9, 'Catalunya', '2022-06-05 10:00:00', NULL, NULL, NULL),
-(10, 'Sachsenring', '2022-06-19 10:00:00', NULL, NULL, NULL),
-(11, 'Assen', '2022-06-26 10:00:00', NULL, NULL, NULL),
-(12, 'Kymiring', '2022-07-10 10:00:00', NULL, NULL, NULL),
-(13, 'Silverstone', '2022-08-07 10:00:00', NULL, NULL, NULL),
-(14, 'RedBullRing', '2022-08-21 10:00:00', NULL, NULL, NULL),
-(15, 'Misano', '2022-09-04 10:00:00', NULL, NULL, NULL),
-(16, 'Aragon', '2022-09-18 10:00:00', NULL, NULL, NULL),
-(17, 'Motegi', '2022-09-25 10:00:00', NULL, NULL, NULL),
-(18, 'Buriram', '2022-10-02 10:00:00', NULL, NULL, NULL),
-(19, 'PI', '2022-10-16 10:00:00', NULL, NULL, NULL),
-(20, 'Sepang', '2022-10-23 10:00:00', NULL, NULL, NULL),
-(21, 'Valencia', '2022-11-06 10:00:00', NULL, NULL, NULL);
+(1, 'Doha', '2022-03-06 11:00:00', 23, 33, 44),
+(2, 'Mandalika', '2022-03-20 11:00:00', 88, 20, 5),
+(3, 'Termas', '2022-04-03 11:00:00', 41, 89, 42),
+(4, 'Austin', '2022-04-10 11:00:00', 23, 42, 43),
+(5, 'Portimao', '2022-04-24 11:00:00', NULL, NULL, NULL),
+(6, 'Jerez', '2022-05-01 11:00:00', NULL, NULL, NULL),
+(7, 'LeMans', '2022-05-15 11:00:00', NULL, NULL, NULL),
+(8, 'Mugello', '2022-05-29 11:00:00', NULL, NULL, NULL),
+(9, 'Catalunya', '2022-06-05 11:00:00', NULL, NULL, NULL),
+(10, 'Sachsenring', '2022-06-19 11:00:00', NULL, NULL, NULL),
+(11, 'Assen', '2022-06-26 11:00:00', NULL, NULL, NULL),
+(12, 'Kymiring', '2022-07-10 11:00:00', NULL, NULL, NULL),
+(13, 'Silverstone', '2022-08-07 11:00:00', NULL, NULL, NULL),
+(14, 'RedBullRing', '2022-08-21 11:00:00', NULL, NULL, NULL),
+(15, 'Misano', '2022-09-04 11:00:00', NULL, NULL, NULL),
+(16, 'Aragon', '2022-09-18 11:00:00', NULL, NULL, NULL),
+(17, 'Motegi', '2022-09-25 11:00:00', NULL, NULL, NULL),
+(18, 'Buriram', '2022-10-02 11:00:00', NULL, NULL, NULL),
+(19, 'PI', '2022-10-16 11:00:00', NULL, NULL, NULL),
+(20, 'Sepang', '2022-10-23 11:00:00', NULL, NULL, NULL),
+(21, 'Valencia', '2022-11-06 11:00:00', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
