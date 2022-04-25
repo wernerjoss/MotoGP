@@ -12,19 +12,19 @@
 </head>
   
 <body>
-	<ul class="nav">
-	<li class="nav-item">
-		<a class="nav-link active" href="./">Home</a>
-	</li>
-	<li class="nav-item">
-		<a class="nav-link" href="riders.html">Fahrerliste</a>
-	</li>
-	<li class="nav-item">
-		<a class="nav-link" href="howto.html">Anleitung</a>
-	</li>
-	</ul>
-	<div class="container">
-		<br><br>
+		<div id = "top" class="container">
+		<ul class="nav">
+		<li class="nav-item">
+			<a class="nav-link active" href="./">Home</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="riders.html">Fahrerliste</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="howto.html">Anleitung</a>
+		</li>
+		</ul>
+			<br><br>
 	    <h2>Hoernerfranzracing MotoGP Tipspiel</h2>
 	    <br><br>
 	    <?php
@@ -63,32 +63,54 @@
 				</div>
 				<p></p>
 			</div>';
+			}	else	{
+				echo 'Hallo Gast, du bist nicht angemeldet und kannst daher nicht am Tipspiel teilnehmen, nur Ergebnisse ansehen.<br><br>';
 			}
 		?>
+		<ul class="nav">
+		<li class="nav-item">
+			<a class="nav-link" href="#results-list">-> Rennergebnisse</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="#tips-list">-> Tips Liste</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="#scores-list">-> Punkte Liste</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="#ranking-list">-> Punktestand</a>
+		</li>
+		</ul>
+	
 		<div class="row">
 			<div class="col-md-8">
-				<h3>Ergebnisse:</h3>
+				<h3>Rennergebnisse:</h3>
 				<div id="results-list"></div>
 			</div>
 		</div>
+		<a class="nav-link" href="#top">-> Seitenanfang</a>
 		<div class="row">
 			<div class="col-md-8">
-				<h3>Tips:</h3>
+				<h3>Tips Liste:</h3>
 				<div id="tips-list"></div>
 			</div>
 		</div>
+		<a class="nav-link" href="#top">-> Seitenanfang</a>
 		<div class="row">
 			<div class="col-md-8">
 				<h3>Punkte:</h3>
 				<div id="scores-list"></div>
 			</div>
 		</div>
+		<a class="nav-link" href="#top">-> Seitenanfang</a>
 		<div class="row">
 			<div class="col-md-8">
 				<h3>Gesamt Punktestand:</h3>
 				<div id="ranking-list"></div>
 			</div>
 		</div>
+		<a class="nav-link" href="#top">-> Seitenanfang</a>
+		
 	</div>
 	<!-- Must put our javascript files here to fast the page loading -->
 	<!-- jQuery library local -->
