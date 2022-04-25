@@ -195,6 +195,12 @@ ALTER TABLE `MGP_users`
 --
 
 --
+-- AUTO_INCREMENT für Tabelle `MGP_users`
+--
+ALTER TABLE `MGP_users`
+  MODIFY `UID` tinyint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
 -- AUTO_INCREMENT für Tabelle `MGP_events`
 --
 ALTER TABLE `MGP_events`

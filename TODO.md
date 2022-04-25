@@ -3,7 +3,9 @@
 -   Formular ausblenden, wenn Deadline vergangen UND noch keine Ergebnisse eingetragen für aktuelles Rennen -   erl. 20.04.
 -   Punktevergabe fehlt noch komplett, ebenso Auswertung/Anzeige    -   erl. 23.04.
 -   Prüfung der Starnummerneingabe (Nummern zulässig ?) (geht auch ohne, falsche Startnr ergibt keine Punkte :-)    -   erl. 23.04.
--   später ggf. Fahrerauswahl P1..P3 als Dropdown-Liste
 -   Hauptmenü (Anleitung, Fahrerliste...)   -   erl. 20.04.
--   Zugang Admin Funktionen nur für UID = 1 (oder mit Passwort)
+-   Zugang Admin Funktionen nur für UID = 1 - erl. mit md5 Hash des Superuser-Nick 25.04.
+-   md5 Hash Superuser-Nick in config.php speichern
+-   Anzeige volle Teilnehmer Namen wenn Aufruf via gültigem Nick
+-   später ggf. Fahrerauswahl P1..P3 als Dropdown-Liste (eher nicht)
 -   ggf. echtes User-Login statt primitivem nick=XYZ Mechanismus :-)

@@ -3,6 +3,8 @@ function get_tipscores()
 	var users = {};
 	var races = {};
 	var scores = {};
+	var Nick = $("#Nickname").text();
+	//	console.log("Nick:", Nick);
 	$.ajax({
         type: "GET", //we are using GET method to get all record from the server
         url: 'ajax/getusers.php', // get the route value
@@ -16,7 +18,13 @@ function get_tipscores()
             if(response.length) {
                 // Loop the parsed JSON
 	            $.each(response, function(key,value) {
-	        		users[value.UID] = value.Vorname + ' ' + value.Name;
+	        		NName = value.Name;
+					if (Nick.length < 1)	{
+						NName = NName[0];	// strip Name if no valid User
+	        			users[value.UID] = value.Vorname + ' ' + NName + '.';
+					}	else	{
+						users[value.UID] = value.Vorname + ' ' + NName;
+					}
 			    });
 				//	console.log(users);
 	        } else {
@@ -48,28 +56,6 @@ function get_tipscores()
 				html += 'No records found!';
 				html += '</div>';
             }
-        }
-    });
-	// get scores
-	$.ajax({
-        type: "GET", //we are using GET method to get all record from the server
-        url: 'ajax/calcscores.php', // get the route value
-        async: false,
-		success: function (response) {//once the request successfully process to the server side it will return result here
-            // Parse the json result
-        	response = JSON.parse(response);
-
-            if(response.length) {
-                $.each(response, function(key,value) {
-					//	scores[value.UID][value.EID] = value.Scores;
-				});
-	        } else {
-            	html += '<div class="alert alert-warning">';
-				html += 'No records found!';
-				html += '</div>';
-            }
-            // 	Insert the HTML Template and display all results records
-			//	$("#scores-list").html(html);
         }
     });
 	$.ajax({

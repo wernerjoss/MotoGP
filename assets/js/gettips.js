@@ -2,6 +2,7 @@ function get_tipresults()
 {
 	var users = {};
 	var races = {};
+	var Nick = $("#Nickname").text();
 	$.ajax({
         type: "GET", //we are using GET method to get all record from the server
         url: 'ajax/getusers.php', // get the route value
@@ -15,7 +16,13 @@ function get_tipresults()
             if(response.length) {
                 // Loop the parsed JSON
 	            $.each(response, function(key,value) {
-	        		users[value.UID] = value.Vorname + ' ' + value.Name;
+					NName = value.Name;
+					if (Nick.length < 1)	{
+						NName = NName[0];	// strip Name if no valid User
+	        			users[value.UID] = value.Vorname + ' ' + NName + '.';
+					}	else	{
+						users[value.UID] = value.Vorname + ' ' + NName;
+					}
 			    });
 	        } else {
             	html += '<div class="alert alert-warning">';

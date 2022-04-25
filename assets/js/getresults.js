@@ -12,7 +12,7 @@ function getusers()
             if(response.length) {
                 // Loop the parsed JSON
 				Vorname = 'Gast';
-				Nickname = $(Nickname).text();
+				Nickname = $("#Nickname").text();
 				//	console.log("Nickname:", Nickname);
 	            $.each(response, function(key,value) {
 	            	if (Nickname == value.Nickname)

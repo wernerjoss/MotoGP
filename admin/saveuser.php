@@ -6,6 +6,8 @@
 	$nickname = $request['Nickname'];
 	$password = $request['Passwort'];
 
+	$verbose = false;
+
 	include "../include/connect.php";
 	
 	$mysqli = new mysqli($db_host, $db_user, $db_pw, $db_name);
@@ -15,10 +17,12 @@
 	  exit();
 	}
 
-	// Set the INSERT SQL data
-	$sql = "INSERT INTO MGP_users (UID, Name, Nickname, Vorname, Email, Passwort)
+	// Set the INSERT SQL data - UID must be AUTO_INCREMENT !
+	$sql = "INSERT INTO MGP_users (UID, Name, Vorname, Nickname, Email, Passwort)
 	VALUES (NULL,'".$name."', '".$firstname."','".$nickname."', '".$email."', '".$password."')";
 
+	if ($verbose)	echo ("sql:".$sql."\n");
+	//	return;
 	// Process the query so that we will save the date of birth
 	if ($mysqli->query($sql)) {
 	  echo "Participant has been created successfully.";
