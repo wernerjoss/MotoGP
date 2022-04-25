@@ -45,13 +45,13 @@ function get_totals()
             if(response.length) {
             	html += '<div class="list-group">';
 				html += '<table>'
-				html += "<tr><th>" + 'Name' + '</th><th>' + 'Punkte' + "</th></tr>";
+				html += "<tr><th></th><th>" + 'Name' + '</th><th>' + 'Punkte' + "</th></tr>";
 	            // Loop the parsed JSON
 				console.log(response);
 	            var stop = false;
 	            $.each(response, function(key,value) {
 					if (value.Score > 0)
-						html += "<tr><td>" + users[value.UID] + '</td><td>' + value.Score + "</td></tr>";
+						html += "<tr><td></td><td>" + users[value.UID] + '</td><td>' + value.Score + "</td></tr>";
 				});
 	            html += '</table>'
 	            html += '</div>';

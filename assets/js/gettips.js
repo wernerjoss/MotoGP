@@ -65,6 +65,7 @@ function get_tipresults()
 
             var html = "";
             // Check if there is available records
+            var Location = '';
             if(response.length) {
             	html += '<div class="list-group">';
 				html += '<table>'
@@ -74,7 +75,12 @@ function get_tipresults()
 	            $.each(response, function(key,value) {
 	            	// Our results list template
 					if (stop === false) {
-						html += "<tr><td>" + races[value.EID] +'</td><td>' + users[value.UID] + '</td><td>' + value.P1 + '</td><td>' + value.P2 + '</td><td>' + value.P3 + "</td></tr>";
+						if ((races[value.EID] != (Location))) {
+							html += "<tr><td>" + races[value.EID] +'</td><td>' + users[value.UID] + '</td><td>' + value.P1 + '</td><td>' + value.P2 + '</td><td>' + value.P3 + "</td></tr>";
+							Location = races[value.EID];
+						}	else	{
+							html += "<tr><td>" + '</td><td>' + users[value.UID] + '</td><td>' + value.P1 + '</td><td>' + value.P2 + '</td><td>' + value.P3 + "</td></tr>";
+						}
 					}
 					if (value.P1 === null) {
 						stop = true;

@@ -68,18 +68,23 @@ function get_tipscores()
 
             var html = "";
             // Check if there is available records
+			var Location = '';
             if(response.length) {
             	html += '<div class="list-group">';
 				html += '<table>'
 				html += "<tr><th>" + 'Event' +'</th><th>'+ 'Name' + '</th><th>' + 'Punkte' + "</th></tr>";
-	            // Loop the parsed JSON
-				console.log(response);
+	            //	Loop the parsed JSON
+				//	console.log(response);
 	            var stop = false;
-	            $.each(response, function(key,value) {
-					// 	Our scores list template
-					//	html += "<tr><td>" + users[value.UID] + '</td><td>' + races[value.EID] +'</td><td>' + value.Score + "</td></tr>";
-					if (value.Score > 0)
-						html += "<tr><td>" + races[value.EID] + '</td><td>' + users[value.UID] +'</td><td>' + value.Score + "</td></tr>";
+				$.each(response, function(key,value) {
+					if (value.Score > 0) {
+						if ((races[value.EID] != (Location))) {
+							html += "<tr><td>" + races[value.EID] + '</td><td>' + users[value.UID] +'</td><td>' + value.Score + "</td></tr>";
+							Location = races[value.EID];
+						}	else	{
+							html += "<tr><td>" + '</td><td>' + users[value.UID] +'</td><td>' + value.Score + "</td></tr>";
+						}
+					}
 				});
 	            html += '</table>'
 	            html += '</div>';

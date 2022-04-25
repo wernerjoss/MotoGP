@@ -24,12 +24,12 @@
 			<a class="nav-link" href="howto.html">Anleitung</a>
 		</li>
 		</ul>
-			<br><br>
+		<br><br>
 	    <h2>Hoernerfranzracing MotoGP Tipspiel</h2>
 	    <br><br>
 	    <?php
 			$Nickname = $_GET["nick"];
-			//	Achtung: $Nickname muss in den span id="Nick" !!! (wird von results.js als hidden input ins Formular eingefügt und somit an savetips.php weitergegeben)
+			//	Achtung: $Nickname muss in den span id="Nickname" !!! (wird von results.js als hidden input ins Formular eingefügt und somit an savetips.php weitergegeben)
 			if (isset($Nickname)) {
 			echo'
 			<div id="TipForm">
@@ -58,13 +58,17 @@
 								</div>
 							</div>
 						</form>
-						
+						<h3 style="margin-top:1em;">Achtung: in die Eingabefelder dürfen NUR Startnummern eingetragen werden, KEINE Namen !</h3>
 					</div>
 				</div>
 				<p></p>
 			</div>';
 			}	else	{
-				echo 'Hallo Gast, du bist nicht angemeldet und kannst daher nicht am Tipspiel teilnehmen, nur Ergebnisse ansehen.<br><br>';
+				echo '<div class="row">
+				<div class="col-md-8">
+				<h3>Hallo Gast, du bist nicht angemeldet und kannst daher nicht am Tipspiel teilnehmen, nur Ergebnisse ansehen.</h3><br>
+				</div>
+				</div>';
 			}
 		?>
 		<ul class="nav">
@@ -98,7 +102,7 @@
 		<a class="nav-link" href="#top">-> Seitenanfang</a>
 		<div class="row">
 			<div class="col-md-8">
-				<h3>Punkte:</h3>
+				<h3>Punkte Liste:</h3>
 				<div id="scores-list"></div>
 			</div>
 		</div>
