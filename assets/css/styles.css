@@ -20,3 +20,6 @@ table tbody tr td:nth-child(2) {
 .h3, h3 {
     font-size: 1.5rem;
 }
+#TipForm .form-control {
+    max-width: 4em;
+}

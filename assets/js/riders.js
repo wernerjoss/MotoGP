@@ -15,10 +15,11 @@ function getresults()
             	html += '<div class="list-group">';
 	            // Loop the parsed JSON
 	            html += '<table>';
+				html += '<tr><th>Startnr</th><th>Name</th><th>Vorname</th><th></tr>';
 				$.each(response, function(key,value) {
 	            	// Our results list template
 					if (value.P1 !== null) {
-						html += '<tr><td>' + value.RID + '</td><td>' + value.Vorname + '</td><td>' + value.Name + '</td><td></tr>';
+						html += '<tr><td>' + value.RID + '</td><td>' + value.Name + '</td><td>' + value.Vorname + '</td><td></tr>';
 					}
 	            });
 				html += '</table>';
