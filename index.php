@@ -8,9 +8,7 @@
 	<link rel="stylesheet" href="assets/bootstrap-4.4.1/css/bootstrap.min.css">
 	<!-- Page CSS -->
   	<link rel="stylesheet" href="assets/css/styles.css">
-	
 </head>
-  
 <body>
 		<div id = "top" class="container">
 		<ul class="nav">
@@ -31,45 +29,46 @@
 			$Nickname = $_GET["nick"];
 			//	Achtung: $Nickname muss in den span id="Nickname" !!! (wird von results.js als hidden input ins Formular eingefügt und somit an savetips.php weitergegeben)
 			if (isset($Nickname)) {
-			echo'
-			<div id="TipForm">
-				<div class="row">
-					<div class="col-md-6">
-						<span id="Nickname" style="display:none">';echo $Nickname;echo '</span>
-						<h3>Hallo <span id="Vorname"></span></h3>
-						<h3>Dein Tip für MotoGP Race</h3><h3><span id="Event"></span></h3><h3><span id="Deadline"></span></h3>
-						<form action="ajax/savetips.php" id="form">
-							<span id="EidUid" style="display:none"></span>
-							<div id="TipForm" class="row">
-							<div class="col-sm-4">
-								<label for="P1">P1</label>
-								<input class="form-control" type="text" name="P1">
-							</div>
-							<div class="col-sm-4">
-								<label for="P2">P2</label>
-								<input class="form-control" type="text" name="P2">
-							</div>
-							<div class="col-sm-4">
-								<label for="P3">P3</label>
-								<input class="form-control" type="text" name="P3">
-							</div>
-								<div class="col-sm-4" style="margin-top: 1em;">
-								<button type="button" class="btn btn-primary" id="btnSubmit">Absenden</button>
+				echo'
+				<div id="TipForm">
+					<div class="row">
+						<div class="col-md-6">
+							<span id="Nickname" style="display:none">';echo $Nickname;echo '</span>
+							<h3>Hallo <span id="Vorname"></span></h3>
+							<h3>Dein Tip für MotoGP Race</h3><h3><span id="Event"></span></h3><h3><span id="Deadline"></span></h3>
+							<form action="ajax/savetips.php" id="form">
+								<span id="EidUid" style="display:none"></span>
+								<div id="TipForm" class="row">
+								<div class="col-sm-4">
+									<label for="P1">P1</label>
+									<input class="form-control" type="text" name="P1">
 								</div>
-							</div>
-						</form>
-						<h3 style="margin-top:1em;">Achtung: in die Eingabefelder dürfen NUR Startnummern eingetragen werden, KEINE Namen !</h3>
+								<div class="col-sm-4">
+									<label for="P2">P2</label>
+									<input class="form-control" type="text" name="P2">
+								</div>
+								<div class="col-sm-4">
+									<label for="P3">P3</label>
+									<input class="form-control" type="text" name="P3">
+								</div>
+									<div class="col-sm-4" style="margin-top: 1em;">
+									<button type="button" class="btn btn-primary" id="btnSubmit">Absenden</button>
+									</div>
+								</div>
+							</form>
+							<h3 style="margin-top:1em;">Achtung: in die Eingabefelder dürfen NUR Startnummern eingetragen werden, KEINE Namen !</h3>
+						</div>
 					</div>
-				</div>
-				<p></p>
-			</div>
-			<div id="tooLate">
-				<div class="row">
-					<div class="col-md-6">
-					<h3>Sorry, du bist zu spät dran, Tips können nur bis zur Deadline abgegeben werden !</h3>
+					<p></p>
+				</div>';
+				echo'
+				<div id="tooLate">
+					<div class="row">
+						<div class="col-md-6">
+						<h3>Sorry, du bist zu spät dran, Tips können nur bis zur Deadline abgegeben werden !</h3>
+						</div>
 					</div>
-				</div>
-			</div>';
+				</div>';
 			}	else	{
 				echo '<div class="row">
 				<div class="col-md-8">
@@ -92,7 +91,6 @@
 			<a class="nav-link" href="#ranking-list">-> Punktestand</a>
 		</li>
 		</ul>
-	
 		<div class="row">
 			<div class="col-md-8">
 				<h3>Rennergebnisse:</h3>
@@ -121,7 +119,6 @@
 			</div>
 		</div>
 		<a class="nav-link" href="#top">-> Seitenanfang</a>
-		
 	</div>
 	<!-- Must put our javascript files here to fast the page loading -->
 	<!-- jQuery library local -->
@@ -136,6 +133,5 @@
 	<script src="assets/js/getscores.js"></script>
 	<script src="assets/js/gettotals.js"></script>
 	<script src="assets/js/savetips.js"></script>
-	
 </body>
 </html>
