@@ -11,7 +11,6 @@
 	// Set the INSERT SQL data
 	$sql = "SELECT * FROM MGP_riders ORDER by Name ASC";
 
-	// Process the query so that we will save the date of birth
 	$results = $mysqli->query($sql);
 
 	// Fetch Associative array

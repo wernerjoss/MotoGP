@@ -25,7 +25,6 @@
 			$sql = "SELECT * FROM MGP_events";
 			break;
 	}
-	// Process the query so that we will save the date of birth
 	$results = $mysqli->query($sql);
 	// Fetch Associative array
 	$row = $results->fetch_all(MYSQLI_ASSOC);

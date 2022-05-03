@@ -2,29 +2,8 @@
 	$request = $_REQUEST; //a PHP Super Global variable which used to collect data after submitting it from the form
 	$nick = $request['Nickname'];
 	$eid = $request['EID'];
-	$p1 = $request['P1'];
-	$p2 = $request['P2'];
-	$p3 = $request['P3'];
+	$comment = $request['Kommentar'];
 	
-	// Test Input Values
-	if (!is_numeric($p1)) {
-		echo "Invalid Value for P1 - nothing stored !";
-		return;
-	}
-	if (!is_numeric($p2)) {
-		echo "Invalid Value for P2 - nothing stored !";
-		return;
-	}
-	if (!is_numeric($p2)) {
-		echo "Invalid Value for P3 - nothing stored !";
-		return;
-	}
-
-	if (!is_numeric($eid)) {
-		echo "Invalid Value for Event ID - nothing stored !";
-		return;
-	}
-
 	include "../include/connect.php";
 	
 	$mysqli = new mysqli($db_host, $db_user, $db_pw, $db_name);
@@ -51,8 +30,8 @@
 		echo "Nickname not found - nothing stored !";
 		return;
 	}
-	// get last TID
-	$sql = "SELECT * from MGP_tips";
+	// get last CID
+	$sql = "SELECT CID from MGP_comments";
 	$result = $mysqli->query($sql);
 	$numrows = mysqli_num_rows($result);
 	if ($numrows>0) {
@@ -61,22 +40,28 @@
 			$res = $row;
 			//	echo print_r($res);
 		}
-		$tid = intval($res["TID"]);	// get last TID
-		//	echo "Last TID:".$tid."<br>";
+		$cid = intval($res["CID"]);	// get last CID
+		//	echo "Last CID:".$cid."<br>";
 	}
-	$tid += 1;	// increment last TID by one
-	//	INSERT or UPDATE SQL data
-	$sql = "SELECT * from MGP_tips WHERE EID=".$eid." AND UID=".$uid;
-	$result = $mysqli->query($sql);
-	if (mysqli_num_rows($result)==0) { 
-		$sql = "INSERT INTO MGP_tips (TID, EID, UID, P1, P2, P3)
-		VALUES ('".$tid."','".$eid."', '".$uid."','".$p1."', '".$p2."', '".$p3."')";
-	}	else	{
-		$sql = "UPDATE MGP_tips SET P1=".$p1.", P2=".$p2." , P3=".$p3." WHERE EID=".$eid." AND UID=".$uid;
+	$cid += 1;	// increment last CID by one
+	$sql = "SELECT LOCALTIME";
+	$result = $mysqli->query($sql);	// get current Date/Time
+	$rows = mysqli_num_rows($result);
+	echo $rows;
+	if ($rows>0) {
+		$row = $result->fetch_all(MYSQLI_ASSOC);
+		//	echo print_r($row);
+		$arr = $row[0];
+		$dt = $arr['LOCALTIME'];
+		//	echo print_r($dt);
 	}
-	echo $sql;
+	//	INSERT SQL data
+	$sql = "INSERT INTO MGP_comments (CID, EID, UID, Date, Comment)
+	VALUES ('".$cid."','".$eid."', '".$uid."','".$dt."', '".$comment."')";
+	//	echo $sql;
+	//	return;
 	if ($mysqli->query($sql)) {
-		echo "Tips record has been saved successfully - be sure to reload page to see the results!";
+		echo "Comment record has been saved successfully - be sure to reload page to see the results!";
 	} else {
 		echo "Error: " . $sql . "<br>" . $mysqli->error;
 		return "Error: " . $sql . "<br>" . $mysqli->error;

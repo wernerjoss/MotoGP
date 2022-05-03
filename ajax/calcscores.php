@@ -87,7 +87,8 @@
 	$sql = "SELECT * from MGP_scores";
 	$result = $mysqli->query($sql);
 	$numScores = mysqli_num_rows($result);
-	$Scores = array();
+	//	$Scores = array();
+	unset ($Scores);
 	
 	if ($numScores>0) {
 		if ($verbose)	echo "numScores:".$numScores."<br>";
@@ -102,7 +103,7 @@
 	echo json_encode($Scores);
 	
 	if ($mysqli->query($sql)) {
-		if( verbose)	echo "<br>Scores have been calculated !";
+		if($verbose)	echo "<br>Scores have been calculated !";	// hier war 'if ( verbose)' !!
 	} else {
 		return "Error: " . $sql . "<br>" . $mysqli->error;
 	}

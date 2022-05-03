@@ -23,3 +23,12 @@ table tbody tr td:nth-child(2) {
 #TipForm .form-control {
     max-width: 4em;
 }
+#CommentForm .form-control {
+    max-width: 100%;
+}
+#comments-list table tbody tr td:first-child {
+    width: 8rem;
+}
+#comments-list table tbody tr td:nth-child(3) {
+    width: 75%;
+}

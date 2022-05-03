@@ -5,7 +5,11 @@
 -   Prüfung der Starnummerneingabe (Nummern zulässig ?) (geht auch ohne, falsche Startnr ergibt keine Punkte :-)    -   erl. 23.04.
 -   Hauptmenü (Anleitung, Fahrerliste...)   -   erl. 20.04.
 -   Zugang Admin Funktionen nur für UID = 1 - erl. mit md5 Hash des Superuser-Nick 25.04.
--   md5 Hash Superuser-Nick in config.php speichern
--   Anzeige volle Teilnehmer Namen wenn Aufruf via gültigem Nick
+-   ggf. md5 Hash Superuser-Nick in config.php speichern
+-   Anzeige volle Teilnehmer Namen wenn Aufruf via gültigem Nick    -   erl. 26.04.
+-   Nick merken via Session ? (Cookie)  -   erl. 28.04.
+-   Optional Bonuspunkte für Späteinsteiger ?
+-   Kommentarfunktion für das letzte Rennen ? - oder Chat ?
+-   Jahres/Saison-Kennung für Events, Fahrer, Tips ?
 -   später ggf. Fahrerauswahl P1..P3 als Dropdown-Liste (eher nicht)
 -   ggf. echtes User-Login statt primitivem nick=XYZ Mechanismus :-)

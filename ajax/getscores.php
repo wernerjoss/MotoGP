@@ -1,4 +1,7 @@
 <?php
+
+	// note: this is not really used anymore ! 
+
 	$request = $_REQUEST; //a PHP Super Global variable which used to collect data after submitting it from the form
 	$verbose = false;
 

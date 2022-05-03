@@ -1,8 +1,12 @@
+<?php
+// Start the session
+session_start();
+?>
 <!doctype html>
 <html lang="de">
 <head>
 	<meta charset="UTF-8">
-	<title>Ergebnisse MotoGP Tipspiel</title>
+	<title>MotoGP Tipspiel</title>
 
   	<!-- Bootstrap CSS local -->
 	<link rel="stylesheet" href="assets/bootstrap-4.4.1/css/bootstrap.min.css">
@@ -16,6 +20,9 @@
 			<a class="nav-link active" href="./">Home</a>
 		</li>
 		<li class="nav-item">
+			<a class="nav-link" href="comments.php">Kommentare</a>
+		</li>
+		<li class="nav-item">
 			<a class="nav-link" href="riders.html">Fahrerliste</a>
 		</li>
 		<li class="nav-item">
@@ -27,6 +34,13 @@
 	    <br><br>
 	    <?php
 			$Nickname = $_GET["nick"];
+			// remember Nickname as Session var for Convenience (keep 'logged in' Status during Session)
+			if (isset($Nickname))	{ 
+				$_SESSION["nick"] = $Nickname; 
+			}
+			if (isset($_SESSION["nick"])) {
+				$Nickname = $_SESSION["nick"];
+			}
 			//	Achtung: $Nickname muss in den span id="Nickname" !!! (wird von results.js als hidden input ins Formular eingefügt und somit an savetips.php weitergegeben)
 			if (isset($Nickname)) {
 				echo'

@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 	<meta charset="UTF-8">
-	<title>Teilnehmer MotoGP Tipspiel</title>
+	<title>MotoGP Tipspiel - Event bearbeiten</title>
 
   	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="../assets/bootstrap-4.4.1/css/bootstrap.min.css">

@@ -60,7 +60,7 @@ function get_tipscores()
     });
 	$.ajax({
         type: "GET", //we are using GET method to get all record from the server
-        url: 'ajax/getscores.php', // get the route value
+        url: 'ajax/calcscores.php',	// achtung: calcscores.php erzeugt hier JSON parse Fehler !!! (war nur wegen zuviel echo am schluss :-)
         async: false,
 		success: function (response) {//once the request successfully process to the server side it will return result here
             // Parse the json result
@@ -74,7 +74,7 @@ function get_tipscores()
 				html += '<table>'
 				html += "<tr><th>" + 'Event' +'</th><th>'+ 'Name' + '</th><th>' + 'Punkte' + "</th></tr>";
 	            //	Loop the parsed JSON
-				//	console.log(response);
+				console.log(response);
 	            var stop = false;
 				$.each(response, function(key,value) {
 					if (value.Score > 0) {
