@@ -92,7 +92,11 @@ function getcomments()
             }
             $(".Event").html(commentEvent);
         	$("#tooLate").attr("hidden",true);
-			$("#comments-list").html(html);
+			firstName = $("#Vorname").text();
+			if (firstName.length > 0)	// check for valid user
+				$("#comments-list").html(html);
+			else
+				$("#CommentForm").attr("hidden",true);
 			html = '<input type="hidden" name="EID" value="' + EID + '"></input><input type="hidden" name="Nickname" value="' + $("#Nickname").text() + '"></input>';
 			$("#EidUid").html(html);
 		}
