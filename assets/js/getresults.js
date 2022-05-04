@@ -82,6 +82,9 @@ function getresults()
 			}	else	{
 				$("#tooLate").attr("hidden",true);
 			}
+			firstName = $("#Vorname").text();
+			if (firstName == 'Gast')	// check for valid user, hide #TipForm, if not
+				$("#TipForm").attr("hidden",true);
 			$("#Event").html(lastEvent);
         	$("#Deadline").html("Deadline: " + deadline);
         	$("#results-list").html(html);

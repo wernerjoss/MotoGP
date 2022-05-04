@@ -3,6 +3,9 @@ function get_tipresults()
 	var users = {};
 	var races = {};
 	var Nick = $("#Nickname").text();
+	var firstName = $("#Vorname").text();
+	//	console.log("FN:", firstName);
+			
 	$.ajax({
         type: "GET", //we are using GET method to get all record from the server
         url: 'ajax/getusers.php', // get the route value
@@ -17,12 +20,10 @@ function get_tipresults()
                 // Loop the parsed JSON
 	            $.each(response, function(key,value) {
 					NName = value.Name;
-					if (Nick.length < 1)	{
-						NName = NName[0];	// strip Name if no valid User
-	        			users[value.UID] = value.Vorname + ' ' + NName + '.';
-					}	else	{
-						users[value.UID] = value.Vorname + ' ' + NName;
-					}
+					if ((firstName == 'Gast') || (Nick.length < 1))
+						NName = NName[0] + '.';	// strip Name if no valid User
+	        		users[value.UID] = value.Vorname + ' ' + NName;
+					
 			    });
 	        } else {
             	html += '<div class="alert alert-warning">';
@@ -61,8 +62,14 @@ function get_tipresults()
         async: false,
 		success: function (response) {//once the request successfully process to the server side it will return result here
             // Parse the json result
-        	response = JSON.parse(response);
-
+        	try {
+				response = JSON.parse(response);
+			}
+			catch (e) {
+				console.err(e);
+				// Return a default object, or null based on use case.
+				response = null;	//	return {}
+			}
             var html = "";
             // Check if there is available records
             var Location = '';

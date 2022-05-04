@@ -28,6 +28,9 @@ session_start();
 			<a class="nav-link" href="howto.html">Anleitung</a>
 		</li>
 	</ul>
+	<br><br>
+	<h2>Hoernerfranzracing MotoGP Tipspiel - Kommentare</h2>
+	<br><br>
 	<?php
 			$Nickname = $_GET["nick"];
 			// remember Nickname as Session var for Convenience (keep 'logged in' Status during Session)
@@ -46,7 +49,7 @@ session_start();
 						<div class="col-md-6">
 							<span id="Nickname" style="display:none">';echo $Nickname;echo '</span>
 							<h3>Hallo <span id="Vorname"></span></h3>
-							<h4>Dein Kommentar zum MotoGP Race <span class="Event"></span>:</h4>
+							<h4>Dein Kommentar zum GP <span class="Event"></span>:</h4>
 							<h3><span id="Deadline"></span></h3>
 							<form action="ajax/savecomment.php" id="form">
 								<span id="EidUid" style="display:none"></span>
@@ -74,7 +77,7 @@ session_start();
 			}	else	{
 				echo '<div class="row">
 				<div class="col-md-8">
-				<h3>Hallo Gast, du bist nicht angemeldet und kannst daher keine Kommentare abgeben oder ansehen, nur Ergebnisse ansehen.</h3><br>
+				<h3>Hallo Gast, du bist nicht angemeldet und kannst daher keine Kommentare abgeben oder ansehen, sorry.</h3><br>
 				</div>
 				</div>';
 			}

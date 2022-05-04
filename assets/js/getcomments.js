@@ -4,6 +4,7 @@ function getcomments()
 	var races = {};
 	var Nick = $("#Nickname").text();
 	var EID = null;
+	var evdate = null;
 	$.ajax({
         type: "GET", //we are using GET method to get all record from the server
         url: 'ajax/getusers.php', // get the route value
@@ -46,10 +47,12 @@ function getcomments()
 	            $.each(response, function(key,value) {
 	            	if (stop === false) {
 						deadline = value.Deadline;
+						dld = value.Deadline.split(" ");
+						evdate = dld[0];	//	value.Deadline;
 						now = moment();
 						CommentDeadline = moment(deadline).add(5, 'd');	// Kommentare bis 5 Tage nach Deadline möglich
 						isAfter = now.isAfter(CommentDeadline);
-						commentEvent = value.Ort;
+						commentEvent = value.Ort + ' ' + evdate;
 						races[value.EID] = value.Ort;
 						EID = value.EID;
 						console.log("Ort: ", commentEvent," EID: ", EID);
@@ -73,7 +76,14 @@ function getcomments()
 		//url: 'getresults.php', // get the route value
         success: function (response) {//once the request successfully process to the server side it will return result here
             // Parse the json result
-        	response = JSON.parse(response);
+        	try {
+				response = JSON.parse(response);
+			}
+			catch (e) {
+				console.err(e);
+				// Return a default object, or null based on use case.
+				response = null;	//	return {}
+			}
 			console.log("resp.:", response);
             var html = "";
             // Check if there is available records

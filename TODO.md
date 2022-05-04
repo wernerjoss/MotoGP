@@ -9,7 +9,8 @@
 -   Anzeige volle Teilnehmer Namen wenn Aufruf via gültigem Nick    -   erl. 26.04.
 -   Nick merken via Session ? (Cookie)  -   erl. 28.04.
 -   Optional Bonuspunkte für Späteinsteiger ?
--   Kommentarfunktion für das letzte Rennen ? - oder Chat ?
+-   Kommentarfunktion für das letzte Rennen ? - erl. 04.05.
+-   Kommentaranzeige f. gewähltes Rennen oder für alle (Liste)
 -   Jahres/Saison-Kennung für Events, Fahrer, Tips ?
 -   später ggf. Fahrerauswahl P1..P3 als Dropdown-Liste (eher nicht)
 -   ggf. echtes User-Login statt primitivem nick=XYZ Mechanismus :-)

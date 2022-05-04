@@ -4,6 +4,7 @@ function get_tipscores()
 	var races = {};
 	var scores = {};
 	var Nick = $("#Nickname").text();
+	var firstName = $("#Vorname").text();
 	//	console.log("Nick:", Nick);
 	$.ajax({
         type: "GET", //we are using GET method to get all record from the server
@@ -19,12 +20,10 @@ function get_tipscores()
                 // Loop the parsed JSON
 	            $.each(response, function(key,value) {
 	        		NName = value.Name;
-					if (Nick.length < 1)	{
-						NName = NName[0];	// strip Name if no valid User
-	        			users[value.UID] = value.Vorname + ' ' + NName + '.';
-					}	else	{
-						users[value.UID] = value.Vorname + ' ' + NName;
+					if ((firstName == 'Gast') || (Nick.length < 1))	{
+						NName = NName[0] + '.';	// strip Name if no valid User
 					}
+					users[value.UID] = value.Vorname + ' ' + NName;
 			    });
 				//	console.log(users);
 	        } else {
@@ -64,7 +63,14 @@ function get_tipscores()
         async: false,
 		success: function (response) {//once the request successfully process to the server side it will return result here
             // Parse the json result
-        	response = JSON.parse(response);
+        	try {
+				response = JSON.parse(response);
+			}
+			catch (e) {
+				console.err(e);
+				// Return a default object, or null based on use case.
+				response = null;	//	return {}
+			}
 
             var html = "";
             // Check if there is available records

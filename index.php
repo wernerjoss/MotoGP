@@ -41,7 +41,7 @@ session_start();
 			if (isset($_SESSION["nick"])) {
 				$Nickname = $_SESSION["nick"];
 			}
-			//	Achtung: $Nickname muss in den span id="Nickname" !!! (wird von results.js als hidden input ins Formular eingefügt und somit an savetips.php weitergegeben)
+			//	Achtung: $Nickname muss in den span id="Nickname" !!! (wird von getresults.js als hidden input ins Formular eingefügt und somit an savetips.php weitergegeben)
 			if (isset($Nickname)) {
 				echo'
 				<div id="TipForm">
