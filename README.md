@@ -23,3 +23,16 @@ berechnet und angezeigt, ebenso der Gesamtpunktestand.
 Ab diesem Zeitpunkt wird wieder der nächste GP angezeigt und die Tipeingabe dafür geöffnet.  
 Tips können bis zur Deadline (diese wird mit angezeigt) beliebig oft upgedatet bzw. korrigiert werden.  
 Nach der Deadline verschwindet das Eingabeformular bis zum Rennende (s.o.).</p>
+
+## Admin Hinweise
+Zur Installation des Spiels auf einem Webserver wird eine Mysql Datenbank benötigt, diese sollte vorab mit dem Dump im Ordner sql
+befüllt werden, alle Tabellen haben das Prefix MGP_.  
+Ggf. sind vorher noch die Renn-Termine sowie die Namen und Startnummern der Fahrer anzupassen (der Dump enthält die Daten von 2022).
+Die Zugangsdaten zur Datenbank müssen in die Datei include/connect.php eingetragen werden.  
+Bevor das Spiel betriebsbereit ist, müssen Teilnehmer (User) angelegt werden, am einfachsten per phpMyAdmin oder im Dump.
+Der wichtigste User ist der mit der UID=1, dies ist der Administrator.  
+Sobald dieser angelegt ist, können mittels admin/adduser.php weitere User bequem angelegt werden, das Feld Passwort ist momentan ein Platzhalter
+und kann leer bleiben.  
+Angelegte User können dann durch Aufruf der Startseite mit ihrem Nickname als Parameter (URL/?nick=AdminNick) am Spiel teilnehmen - der Admin kann zusätzlich zum Anlegen von Usern auch die Events bearbeiten via admin/editevent.php (auch hier muss der Nickname als Parameter übergeben werden).
+Diese Funktion wird immer nach dem Zieleinlauf eines Rennens benötigt, zum Eintragen des Renn-Ergebnisses.  
+Weitere Admin Funktionen sind aktuell nicht vorgesehen und müssen daher z.B. via phpMyAdmin vorgenommen werden.

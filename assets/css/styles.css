@@ -27,8 +27,15 @@ table tbody tr td:nth-child(2) {
     max-width: 100%;
 }
 #comments-list table tbody tr td:first-child {
-    width: 8rem;
+    width: 4rem;
+}
+#comments-list table tbody tr td:nth-child(2) {
+    width: 5rem;
 }
 #comments-list table tbody tr td:nth-child(3) {
-    width: 75%;
+    width: 6rem;
+}
+#comments-list table {
+    border-collapse: separate;
+    border-spacing: 15px;
 }

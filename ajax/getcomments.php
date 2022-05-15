@@ -6,7 +6,7 @@
 		echo "Failed to connect to MySQL: " . $mysqli->connect_error;
 		exit();
 	}
-	$sql = "SELECT * FROM MGP_comments";
+	$sql = "SELECT * FROM MGP_comments ORDER BY CID DESC";
 	//	echo $sql;
 	$results = $mysqli->query($sql);
 	// Fetch Associative array

@@ -14,7 +14,7 @@ function getresults()
             if(response.length) {
             	html += '<div class="list-group">';
 	            html += '<table>'
-				html += "<tr><th>" + 'Event' +'</th><th>'+ 'Datum' + '</th><th>' + 'P1' + '</th><th>' + 'P2' + '</th><th>' + 'P3' + "</th></tr>";
+				html += "<tr><th>" + 'Event' +'</th><th>'+ 'EID' + '</th><th>' + 'Datum' + '</th><th>' + 'P1' + '</th><th>' + 'P2' + '</th><th>' + 'P3' + "</th></tr>";
 	            // Loop the parsed JSON
 	            var stop = false;
 	            $.each(response, function(key,value) {
@@ -22,7 +22,7 @@ function getresults()
 					if (stop === false) {
 						dld = value.Deadline.split(" ");
 						evdate = dld[0];	//	value.Deadline;
-						html += "<tr><td>" + value.Ort +'</td><td>' + evdate + '</td><td>' + value.P1 + '</td><td>' + value.P2 + '</td><td>' + value.P3 + "</td></tr>";
+						html += "<tr><td>" + value.Ort +'</td><td>' + value.EID + '</td><td>' + evdate + '</td><td>' + value.P1 + '</td><td>' + value.P2 + '</td><td>' + value.P3 + "</td></tr>";
 						if (value.P1 === null) {
 							stop = true;
 							lastEvent = value.Ort + ' ' + evdate;

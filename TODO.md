@@ -10,7 +10,8 @@
 -   Nick merken via Session ? (Cookie)  -   erl. 28.04.
 -   Optional Bonuspunkte für Späteinsteiger ?
 -   Kommentarfunktion für das letzte Rennen ? - erl. 04.05.
--   Kommentaranzeige f. gewähltes Rennen oder für alle (Liste)
+-   Kommentare möglich bis 2 Tage vor dem folgenden GP (momentan bis 5 Tage nach letztem GP)
+-   Kommentaranzeige f. gewähltes Rennen oder für alle (Liste) - erstmal für alle bisherigen 05.05.
 -   Jahres/Saison-Kennung für Events, Fahrer, Tips ?
 -   später ggf. Fahrerauswahl P1..P3 als Dropdown-Liste (eher nicht)
 -   ggf. echtes User-Login statt primitivem nick=XYZ Mechanismus :-)

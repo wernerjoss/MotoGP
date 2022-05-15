@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Erstellungszeit: 22. Apr 2022 um 08:42
+-- Erstellungszeit: 05. Mai 2022 um 11:18
 -- Server-Version: 8.0.27
 -- PHP-Version: 7.4.4
 
@@ -20,6 +20,21 @@ SET time_zone = "+00:00";
 --
 -- Datenbank: `motogpdb`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `MGP_comments`
+--
+
+DROP TABLE IF EXISTS `MGP_comments`;
+CREATE TABLE `MGP_comments` (
+  `CID` int NOT NULL COMMENT 'Comment ID',
+  `EID` tinyint NOT NULL COMMENT 'Event ID',
+  `UID` tinyint NOT NULL COMMENT 'User ID',
+  `Date` datetime DEFAULT NULL,
+  `Comment` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -42,12 +57,12 @@ CREATE TABLE `MGP_events` (
 --
 
 INSERT INTO `MGP_events` (`EID`, `Ort`, `Deadline`, `P1`, `P2`, `P3`) VALUES
-(1, 'Doha', '2022-03-06 15:00:00', 23, 33, 44),
-(2, 'Mandalika', '2022-03-20 7:00:00', 88, 20, 5),
-(3, 'Termas', '2022-04-03 16:00:00', 41, 89, 42),
-(4, 'Austin', '2022-04-10 16:00:00', 23, 42, 43),
+(1, 'Doha', '2022-03-06 10:00:00', 23, 33, 44),
+(2, 'Mandalika', '2022-03-20 10:00:00', 88, 20, 5),
+(3, 'Termas', '2022-04-03 10:00:00', 41, 89, 42),
+(4, 'Austin', '2022-04-10 10:00:00', 23, 42, 43),
 (5, 'Portimao', '2022-04-24 13:00:00', 20, 5, 41),
-(6, 'Jerez', '2022-05-01 13:00:00', NULL, NULL, NULL),
+(6, 'Jerez', '2022-05-01 13:00:00', 63, 20, 41),
 (7, 'LeMans', '2022-05-15 13:00:00', NULL, NULL, NULL),
 (8, 'Mugello', '2022-05-29 13:00:00', NULL, NULL, NULL),
 (9, 'Catalunya', '2022-06-05 13:00:00', NULL, NULL, NULL),
@@ -58,10 +73,10 @@ INSERT INTO `MGP_events` (`EID`, `Ort`, `Deadline`, `P1`, `P2`, `P3`) VALUES
 (14, 'RedBullRing', '2022-08-21 13:00:00', NULL, NULL, NULL),
 (15, 'Misano', '2022-09-04 13:00:00', NULL, NULL, NULL),
 (16, 'Aragon', '2022-09-18 13:00:00', NULL, NULL, NULL),
-(17, 'Motegi', '2022-09-25 7:00:00', NULL, NULL, NULL),
-(18, 'Buriram', '2022-10-02 7:00:00', NULL, NULL, NULL),
-(19, 'PI', '2022-10-16 6:00:00', NULL, NULL, NULL),
-(20, 'Sepang', '2022-10-23 7:00:00', NULL, NULL, NULL),
+(17, 'Motegi', '2022-09-25 07:00:00', NULL, NULL, NULL),
+(18, 'Buriram', '2022-10-02 07:00:00', NULL, NULL, NULL),
+(19, 'PI', '2022-10-16 06:00:00', NULL, NULL, NULL),
+(20, 'Sepang', '2022-10-23 07:00:00', NULL, NULL, NULL),
 (21, 'Valencia', '2022-11-06 13:00:00', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -120,6 +135,7 @@ CREATE TABLE `MGP_scores` (
   `Score` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- --------------------------------------------------------
 
 --
 -- Tabellenstruktur für Tabelle `MGP_tips`
@@ -127,7 +143,7 @@ CREATE TABLE `MGP_scores` (
 
 DROP TABLE IF EXISTS `MGP_tips`;
 CREATE TABLE `MGP_tips` (
-  `TID` smallint NOT NULL,
+  `TID` smallint DEFAULT NULL,
   `EID` tinyint NOT NULL,
   `UID` tinyint NOT NULL,
   `P1` tinyint DEFAULT NULL,
@@ -135,6 +151,7 @@ CREATE TABLE `MGP_tips` (
   `P3` tinyint DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- --------------------------------------------------------
 
 --
 -- Tabellenstruktur für Tabelle `MGP_totals`
@@ -167,6 +184,12 @@ CREATE TABLE `MGP_users` (
 --
 
 --
+-- Indizes für die Tabelle `MGP_comments`
+--
+ALTER TABLE `MGP_comments`
+  ADD PRIMARY KEY (`CID`);
+
+--
 -- Indizes für die Tabelle `MGP_events`
 --
 ALTER TABLE `MGP_events`
@@ -179,12 +202,6 @@ ALTER TABLE `MGP_riders`
   ADD PRIMARY KEY (`RID`);
 
 --
--- Indizes für die Tabelle `MGP_tips`
---
-ALTER TABLE `MGP_tips`
-  ADD PRIMARY KEY (`TID`);
-
---
 -- Indizes für die Tabelle `MGP_users`
 --
 ALTER TABLE `MGP_users`
@@ -195,34 +212,16 @@ ALTER TABLE `MGP_users`
 --
 
 --
--- AUTO_INCREMENT für Tabelle `MGP_users`
+-- AUTO_INCREMENT für Tabelle `MGP_comments`
 --
-ALTER TABLE `MGP_users`
-  MODIFY `UID` tinyint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
-
---
--- AUTO_INCREMENT für Tabelle `MGP_events`
---
-ALTER TABLE `MGP_events`
-  MODIFY `EID` tinyint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
-
---
--- AUTO_INCREMENT für Tabelle `MGP_riders`
---
-ALTER TABLE `MGP_riders`
-  MODIFY `RID` tinyint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
-
---
--- AUTO_INCREMENT für Tabelle `MGP_tips`
---
-ALTER TABLE `MGP_tips`
-  MODIFY `TID` smallint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+ALTER TABLE `MGP_comments`
+  MODIFY `CID` int NOT NULL AUTO_INCREMENT COMMENT 'Comment ID', AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT für Tabelle `MGP_users`
 --
 ALTER TABLE `MGP_users`
-  MODIFY `UID` tinyint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `UID` tinyint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

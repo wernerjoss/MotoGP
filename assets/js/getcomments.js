@@ -87,15 +87,31 @@ function getcomments()
 			console.log("resp.:", response);
             var html = "";
             // Check if there is available records
+            var Location = '';
             if(response.length) {
             	html += '<div class="list-group">';
 	            html += '<table>'
-				html += "<tr><th>" + 'User' + '</th><th>' + 'Datum' + '</th><th>' + 'Kommentar' + "</th></tr>";
+				html += "<tr><th>" + 'Event' + '</th><th>' + 'Name' + '</th><th>' + 'Datum' + '</th><th>' + 'Kommentar' + "</th></tr>";
 				// TODO: Auswahl Event zum Anzeigen Kommentare (oder alle Events)
+	            var stop = false;
 	            $.each(response, function(key,value) {
+					/*
 					if (value.EID == EID)	// nur Kommentare für bearbeitbaren Event anzeigen
 						html += "<tr><td>" + users[value.UID] + '</td><td>' + value.Date + '</td><td>' + value.Comment + "</td></tr>";
+					*/
+					if (stop === false) {
+						if ((races[value.EID] != (Location))) {
+							html += "<tr><td>" + races[value.EID] +'</td><td>' + users[value.UID] + '</td><td>' + value.Date + '</td><td>' + value.Comment + "</td></tr>";
+							Location = races[value.EID];
+						}	else	{
+							html += "<tr><td>" + '</td><td>' + users[value.UID] + '</td><td>' + value.Date + '</td><td>' + value.Comment + "</td></tr>";
+						}
+					}
+					if (value.P1 === null) {
+						stop = true;
+					}
 				});
+				
 				html += '</table>'
 	            html += '</div>';
 	            html += '</div>';

@@ -83,7 +83,7 @@ session_start();
 			}
 		?>
 		<br><br>
-	    <h3>Kommentare zum GP <span class="Event"></span>:</h3>
+	    <h3>Kommentare zu den bisherigen GP's:</h3>
 	    <br><br>
 		<div class="row">
 			<div class="col-sm-12">
