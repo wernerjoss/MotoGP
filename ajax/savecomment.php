@@ -3,6 +3,12 @@
 	$nick = $request['Nickname'];
 	$eid = $request['EID'];
 	$comment = $request['Kommentar'];
+
+	$comment = str_replace("'","\'",$comment);	// fix Bug Schau'n mer mal Jochen Treuz 29.05.22
+	
+	$umlauts = array("ä","ö","ü","Ä","Ö","Ü");
+	$rep = array("&auml;","&ouml;","&uuml;","&Auml;","&Ouml;","&Uuml;");
+	$comment = str_replace($umlauts,$rep,$comment);	// fix Umlauts Encoding
 	
 	include "../include/connect.php";
 	

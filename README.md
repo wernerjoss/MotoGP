@@ -33,6 +33,6 @@ Bevor das Spiel betriebsbereit ist, müssen Teilnehmer (User) angelegt werden, a
 Der wichtigste User ist der mit der UID=1, dies ist der Administrator.  
 Sobald dieser angelegt ist, können mittels admin/adduser.php weitere User bequem angelegt werden, das Feld Passwort ist momentan ein Platzhalter
 und kann leer bleiben.  
-Angelegte User können dann durch Aufruf der Startseite mit ihrem Nickname als Parameter (URL/?nick=AdminNick) am Spiel teilnehmen - der Admin kann zusätzlich zum Anlegen von Usern auch die Events bearbeiten via admin/editevent.php (auch hier muss der Nickname als Parameter übergeben werden).
+Angelegte User können dann durch Aufruf der Startseite mit ihrem Nickname als Parameter (URL/?nick=Nickname) am Spiel teilnehmen - der Admin kann zusätzlich zum Anlegen von Usern auch die Events bearbeiten via admin/editevent.php (auch hier muss der Nickname als Parameter übergeben werden).
 Diese Funktion wird immer nach dem Zieleinlauf eines Rennens benötigt, zum Eintragen des Renn-Ergebnisses.  
 Weitere Admin Funktionen sind aktuell nicht vorgesehen und müssen daher z.B. via phpMyAdmin vorgenommen werden.

@@ -1,3 +1,9 @@
+# v0.1.2
+##  29/05/2022
+
+1. [](#bugfix)
+    * fix Apostroph and Umlauts handling in Comments
+
 # v0.1.1
 ##  03/05/2022
 
