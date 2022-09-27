@@ -10,6 +10,7 @@ function getresults()
         	response = JSON.parse(response);
 
             var html = "";
+			var lastEID = "";
             // Check if there is available records
             if(response.length) {
             	html += '<div class="list-group">';
@@ -26,6 +27,7 @@ function getresults()
 						if (value.P1 === null) {
 							stop = true;
 							lastEvent = value.Ort + ' ' + evdate;
+							lastEID = value.EID;
 						}
 					}
 				});
@@ -39,6 +41,8 @@ function getresults()
             }
             // Insert the HTML Template and display all results records
 			$("#results-list").html(html);
+			// console.log("EID", lastEID);
+			$('input[name=EID]').val(lastEID);	// preset Input Form with last EID 27.09.22
         }
     });
 }
