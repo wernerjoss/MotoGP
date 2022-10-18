@@ -80,7 +80,7 @@ function get_tipscores()
 				html += '<table>'
 				html += "<tr><th>" + 'Event' +'</th><th>'+ 'Name' + '</th><th>' + 'Punkte' + "</th></tr>";
 	            //	Loop the parsed JSON
-				console.log(response);
+				//	console.log(response);
 	            var stop = false;
 				$.each(response, function(key,value) {
 					if (value.Score > 0) {

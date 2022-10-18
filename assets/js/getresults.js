@@ -14,9 +14,11 @@ function getusers()
 				Vorname = 'Gast';
 				Nickname = $("#Nickname").text();
 				//	console.log("Nickname:", Nickname);
+				var UID = 0;
 	            $.each(response, function(key,value) {
-	            	if (Nickname == value.Nickname)
+	            	if (Nickname == value.Nickname) {
 						Vorname = value.Vorname;
+					}
 			    });
 				//	console.log("Vorname", Vorname);
 				$("#Vorname").html(Vorname);
@@ -63,13 +65,18 @@ function getresults()
 							EID = value.EID;
 						}
 					}
+					if (!stop)	{
+						lastEvent = value.Ort;	// Event Liste voll, kein weiteres Rennen !
+
+					}
+					//	console.log(value.Ort);
 				});
 				html += '</table>'
 	            html += '</div>';
 	            html += '</div>';
             } else {
             	html += '<div class="alert alert-warning">';
-				  html += 'No records found!';
+				html += 'No records found!';
 				html += '</div>';
             }
             // Insert the HTML Template and display all results records
@@ -83,7 +90,7 @@ function getresults()
 				$("#tooLate").attr("hidden",true);
 			}
 			firstName = $("#Vorname").text();
-			if (firstName == 'Gast')	// check for valid user, hide #TipForm, if not
+			if (firstName == 'Gast' || (!stop))	// check for valid user, hide #TipForm, if not, same when all events completed
 				$("#TipForm").attr("hidden",true);
 			$("#Event").html(lastEvent);
         	$("#Deadline").html("Deadline: " + deadline);

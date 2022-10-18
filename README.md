@@ -30,7 +30,7 @@ befüllt werden, alle Tabellen haben das Prefix MGP_.
 Ggf. sind vorher noch die Renn-Termine sowie die Namen und Startnummern der Fahrer anzupassen (der Dump enthält die Daten von 2022).
 Die Zugangsdaten zur Datenbank müssen in die Datei include/connect.php eingetragen werden.  
 Bevor das Spiel betriebsbereit ist, müssen Teilnehmer (User) angelegt werden, am einfachsten per phpMyAdmin oder im Dump.
-Der wichtigste User ist der mit der UID=1, dies ist der Administrator.  
+Der wichtigste User ist der mit der UID=1, dies ist der Administrator - nur er hat auch Admin Funktionen (Edit Event, Add User) im Hautpmenue !  
 Sobald dieser angelegt ist, können mittels admin/adduser.php weitere User bequem angelegt werden, das Feld Passwort ist momentan ein Platzhalter
 und kann leer bleiben.  
 Angelegte User können dann durch Aufruf der Startseite mit ihrem Nickname als Parameter (URL/?nick=Nickname) am Spiel teilnehmen - der Admin kann zusätzlich zum Anlegen von Usern auch die Events bearbeiten via admin/editevent.php (auch hier muss der Nickname als Parameter übergeben werden).

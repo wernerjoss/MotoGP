@@ -29,10 +29,7 @@ session_start();
 			<a class="nav-link" href="howto.html">Anleitung</a>
 		</li>
 		</ul>
-		<br><br>
-	    <h2>Hoernerfranzracing MotoGP Tipspiel</h2>
-	    <br><br>
-	    <?php
+		<?php
 			$Nickname = $_GET["nick"];
 			// remember Nickname as Session var for Convenience (keep 'logged in' Status during Session)
 			if (isset($Nickname))	{ 
@@ -43,7 +40,44 @@ session_start();
 			}
 			//	Achtung: $Nickname muss in den span id="Nickname" !!! (wird von getresults.js als hidden input ins Formular eingefügt und somit an savetips.php weitergegeben)
 			if (isset($Nickname)) {
-				echo'
+				//if (md5("$Nickname") == "0209fffded52973ca4ff82f5333b3de1")		{	// md5 Hash des Superuser-Nicks :-)
+
+				// Determine UID from Nickname:
+				$UID = -1;
+				include "./include/connect.php";
+				$mysqli = new mysqli($db_host, $db_user, $db_pw, $db_name);
+				if ($mysqli->connect_errno) {
+					echo "Failed to connect to MySQL: " . $mysqli->connect_error;
+					exit();
+				}
+				$sql = 'SELECT UID FROM MGP_users WHERE Nickname = '."\"$Nickname\"";
+				//	echo $sql;
+				$results = $mysqli->query($sql);
+				$row = $results->fetch_all(MYSQLI_ASSOC);
+				if (is_array($row))	{
+					$UID = $row[0]["UID"];
+				}
+				//	echo "<br>UID:".$UID;
+				$results->free_result();
+				$mysqli->close();
+
+				//	DONE: check for UID=1, NOT md5 Hash from Nickname !
+				if ($UID == 1) {	// 1 = UID des Superusers !
+					echo '			
+					<ul class="nav">
+					<li class="nav-item">
+						<a class="nav-link active" href="./admin/editevent.php?nick=';echo $Nickname;
+						echo '">Edit Event</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active" href="./admin/adduser.php?nick=';echo $Nickname;
+						echo '">Add User</a>
+					</li>
+					</ul>					';
+				}
+				echo '<br><br>
+				<h2>Hoernerfranzracing MotoGP Tipspiel</h2>
+				<br><br>
 				<div id="TipForm">
 					<div class="row">
 						<div class="col-md-6">

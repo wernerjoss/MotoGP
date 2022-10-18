@@ -1,3 +1,11 @@
+# v0.1.3
+##  18/10/2022
+
+1. [](#new)
+    * Add Admin Nav Menu for Superuser
+2. [](#bugfix)
+    * fix invalid Tip Form when last Event complete
+
 # v0.1.2
 ##  29/05/2022
 
