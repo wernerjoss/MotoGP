@@ -7,11 +7,11 @@ session_start();
 <head>
 	<meta charset="UTF-8">
 	<title>MotoGP Tipspiel</title>
-
   	<!-- Bootstrap CSS local -->
 	<link rel="stylesheet" href="assets/bootstrap-4.4.1/css/bootstrap.min.css">
 	<!-- Page CSS -->
   	<link rel="stylesheet" href="assets/css/styles.css">
+	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
 </head>
 <body>
 		<div id = "top" class="container">
@@ -125,6 +125,7 @@ session_start();
 				</div>';
 			}
 		?>
+		<!--
 		<ul class="nav">
 		<li class="nav-item">
 			<a class="nav-link" href="#results-list">-> Rennergebnisse</a>
@@ -139,34 +140,79 @@ session_start();
 			<a class="nav-link" href="#ranking-list">-> Punktestand</a>
 		</li>
 		</ul>
-		<div class="row">
-			<div class="col-md-8">
-				<h3>Rennergebnisse:</h3>
-				<div id="results-list"></div>
+		-->
+		<div class="accordion" id="AccordionContainer">
+			<div class="card">
+				<div class="card-header">
+					<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#results">
+					<h3><i class="fa fa-plus"></i> Rennergebnisse</h3>
+					</button>
+				</div>
+				<div class="collapse show" id="results" data-parent="#AccordionContainer">
+					<div class="card-body">
+						<div class="col-md-8">
+							<div id="results-list"></div>
+						</div>
+					</div>
+					<a class="nav-link" href="#top">-> Seitenanfang</a>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-header">
+					<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#tips">
+						<h3><i class="fa fa-plus"></i> Tips-Liste</h3>
+					</button>
+				</div>
+				<div class="collapse" id="tips" data-parent="#AccordionContainer">
+					<a class="nav-link" href="#tips-list-bottom">-> Listenende</a>
+					<div class="card-body">
+						<div class="row">
+							<div class="col-md-8">
+								<div id="tips-list"></div>
+								<div id = "tips-list-bottom"></div>
+							</div>
+						</div>
+					</div>
+					<a class="nav-link" href="#top">-> Seitenanfang</a>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-header">
+					<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#scores">
+						<h3><i class="fa fa-plus"></i> Punkte-Liste</h3>
+					</button>
+				</div>
+				<div class="collapse" id="scores" data-parent="#AccordionContainer">
+					<a class="nav-link" href="#scores-list-bottom">-> Listenende</a>
+					<div class="card-body">
+						<div class="row">
+							<div class="col-md-8">
+								<div id="scores-list"></div>
+								<div id = "scores-list-bottom"></div>
+							</div>
+						</div>
+						<a class="nav-link" href="#top">-> Seitenanfang</a>
+					</div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-header">
+					<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#ranking">
+						<h3><i class="fa fa-plus"></i> Gesamt Punktestand</h3>
+					</button>
+				</div>
+				<div class="collapse" id="ranking" data-parent="#AccordionContainer">
+				<div class="card-body">
+						<div class="row">
+							<div class="col-md-8">
+								<div id="ranking-list"></div>
+							</div>
+						</div>
+						<a class="nav-link" href="#top">-> Seitenanfang</a>
+					</div>
+				</div>
 			</div>
 		</div>
-		<a class="nav-link" href="#top">-> Seitenanfang</a>
-		<div class="row">
-			<div class="col-md-8">
-				<h3>Tips Liste:</h3>
-				<div id="tips-list"></div>
-			</div>
-		</div>
-		<a class="nav-link" href="#top">-> Seitenanfang</a>
-		<div class="row">
-			<div class="col-md-8">
-				<h3>Punkte Liste:</h3>
-				<div id="scores-list"></div>
-			</div>
-		</div>
-		<a class="nav-link" href="#top">-> Seitenanfang</a>
-		<div class="row">
-			<div class="col-md-8">
-				<h3>Gesamt Punktestand:</h3>
-				<div id="ranking-list"></div>
-			</div>
-		</div>
-		<a class="nav-link" href="#top">-> Seitenanfang</a>
 	</div>
 	<!-- Must put our javascript files here to fast the page loading -->
 	<!-- jQuery library local -->
@@ -181,5 +227,19 @@ session_start();
 	<script src="assets/js/getscores.js"></script>
 	<script src="assets/js/gettotals.js"></script>
 	<script src="assets/js/savetips.js"></script>
+	<script>
+	$(document).ready(function(){
+		//Add a minus icon to the collapse element that is open by default
+		$('.collapse.show').each(function(){
+			$(this).parent().find(".fa").removeClass("fa-plus").addClass("fa-minus");
+		});
+		//Toggle plus/minus icon on show/hide of collapse element
+		$('.collapse').on('shown.bs.collapse', function(){
+			$(this).parent().find(".fa").removeClass("fa-plus").addClass("fa-minus");
+		}).on('hidden.bs.collapse', function(){
+			$(this).parent().find(".fa").removeClass("fa-minus").addClass("fa-plus");
+		});       
+	});
+	</script>
 </body>
 </html>

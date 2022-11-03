@@ -13,6 +13,6 @@
 
 -   Optional Bonuspunkte für Späteinsteiger ?
 -   Kommentare möglich bis 2 Tage vor dem folgenden GP (momentan bis 5 Tage nach letztem GP)
--   Jahres/Saison-Kennung für Events, Fahrer, Tips ?
--   später ggf. Fahrerauswahl P1..P3 als Dropdown-Liste (eher nicht)
--   ggf. echtes User-Login statt primitivem nick=XYZ Mechanismus :-)
+-   Jahres/Saison-Kennung für Events, Fahrer, Tips, Jahres-Historie ?
+-   später ggf. Fahrerauswahl P1..P3 als Dropdown-Liste - nein
+-   ggf. echtes User-Login statt primitivem nick=XYZ Mechanismus :-) - nein
