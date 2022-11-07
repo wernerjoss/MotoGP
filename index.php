@@ -76,7 +76,9 @@ session_start();
 					</ul>					';
 				}
 				echo '<br><br>
-				<h2>Hoernerfranzracing MotoGP Tipspiel</h2>
+				<h2>Hoernerfranzracing MotoGP Tipspiel 2022</h2>
+				<br><br>
+				<h3 id="finMsg">Das Tipspiel ist beendet, auf ein Neues 2023 !</h3>
 				<br><br>
 				<div id="TipForm">
 					<div class="row">

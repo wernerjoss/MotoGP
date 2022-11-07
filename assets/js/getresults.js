@@ -45,6 +45,7 @@ function getresults()
         	response = JSON.parse(response);
 
             var html = "";
+			var fin = false;
             // Check if there is available records
             if(response.length) {
             	html += '<div class="list-group">';
@@ -67,7 +68,8 @@ function getresults()
 					}
 					if (!stop)	{
 						lastEvent = value.Ort;	// Event Liste voll, kein weiteres Rennen !
-
+						fin = true;
+						//	console.log("Fin:", fin);
 					}
 					//	console.log(value.Ort);
 				});
@@ -85,7 +87,13 @@ function getresults()
 			//	console.log("isAfter:", isAfter);
 			if (isAfter) {
 				$("#TipForm").attr("hidden",true);
-				$("#tooLate").attr("hidden",false);
+				console.log("Fin:", fin);
+				if (!fin)	
+					$("#tooLate").attr("hidden",false);
+				else	{
+					$("#tooLate").attr("hidden",true);
+					$("#finMsg").attr("hidden",false);
+				}
 			}	else	{
 				$("#tooLate").attr("hidden",true);
 			}
