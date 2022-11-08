@@ -84,10 +84,11 @@ function getresults()
             // Insert the HTML Template and display all results records
 			now = moment();
 			isAfter = now.isAfter(deadline);
+			$("#finMsg").attr("hidden",true);	// Default :-)
 			//	console.log("isAfter:", isAfter);
 			if (isAfter) {
 				$("#TipForm").attr("hidden",true);
-				console.log("Fin:", fin);
+				//	console.log("Fin:", fin);
 				if (!fin)	
 					$("#tooLate").attr("hidden",false);
 				else	{
