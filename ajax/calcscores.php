@@ -62,15 +62,25 @@
 		if ($verbose)	{ echo print_r($Tip);echo print("<br>"); }
 		$UID = $Tip["UID"] - 1;	// EID, UID sind hier Indizes !!
 		$EID = $Tip["EID"] - 1;
+		$Race = "";
+		foreach ($Events as $Event) {
+			if ($Event["EID"] == $Tip["EID"]) {
+				$Race = $Event["Ort"];
+			}
+		}
+		$addsc = 2;	// default added points for correct tip in main race
+		if (strpos($Race, "Sprint") !== false) {	// $Race contains "Sprint"
+			$addsc = 1;	// only 1 point for sprint races 2023
+		}
 		if ($verbose) echo "UserNr:$UID ".$Users[$UID]["Name"]." P1:".$Tip["P1"]." P2:".$Tip["P2"]." P3:".$Tip["P3"]."<br>";
 		if (intval($Tip["P1"]) == intval($Events[$EID]["P1"]))	{
-			$Scores[$EID][$UID] += 1;
+			$Scores[$EID][$UID] += $addsc;
 		}
 		if (intval($Tip["P2"]) == intval($Events[$EID]["P2"]))	{
-			$Scores[$EID][$UID] += 1;
+			$Scores[$EID][$UID] += $addsc;
 		}
 		if (intval($Tip["P3"]) == intval($Events[$EID]["P3"]))	{
-			$Scores[$EID][$UID] += 1;
+			$Scores[$EID][$UID] += $addsc;
 		}
 		if ($Scores[$EID][$UID] > 0) if ($verbose)	echo print("Score: ".$Scores[$EID][$UID]."<br>");
 		$EIDp = $EID + 1;	// EIDp, UIDp sind die Keys

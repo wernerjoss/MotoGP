@@ -4,11 +4,8 @@ function getresults()
 	$.ajax({
         type: "GET", //we are using GET method to get all record from the server
         url: 'ajax/getriders.php', // get the route value
-        success: function (response) {//once the request successfully process to the server side it will return result here
-            
-            // Parse the json result
-        	response = JSON.parse(response);
-
+        dataType: "json",
+		success: function (response) {//once the request successfully process to the server side it will return result here
             var html = "";
             // Check if there is available records
             if(response.length) {

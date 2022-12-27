@@ -40,8 +40,6 @@ session_start();
 			}
 			//	Achtung: $Nickname muss in den span id="Nickname" !!! (wird von getresults.js als hidden input ins Formular eingefügt und somit an savetips.php weitergegeben)
 			if (isset($Nickname)) {
-				//if (md5("$Nickname") == "0209fffded52973ca4ff82f5333b3de1")		{	// md5 Hash des Superuser-Nicks :-)
-
 				// Determine UID from Nickname:
 				$UID = -1;
 				include "./include/connect.php";
@@ -76,9 +74,9 @@ session_start();
 					</ul>					';
 				}
 				echo '<br><br>
-				<h2>Hoernerfranzracing MotoGP Tipspiel 2022</h2>
+				<h2>Hoernerfranzracing MotoGP Tipspiel 2023</h2>
 				<br><br>
-				<h3 id="finMsg">Das Tipspiel ist beendet, auf ein Neues 2023 !</h3>
+				<h3 id="finMsg" style="display:none">Saisonende - auf ein neues im nächsten Jahr !</h3>
 				<br><br>
 				<div id="TipForm">
 					<div class="row">
@@ -127,22 +125,6 @@ session_start();
 				</div>';
 			}
 		?>
-		<!--
-		<ul class="nav">
-		<li class="nav-item">
-			<a class="nav-link" href="#results-list">-> Rennergebnisse</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" href="#tips-list">-> Tips Liste</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" href="#scores-list">-> Punkte Liste</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" href="#ranking-list">-> Punktestand</a>
-		</li>
-		</ul>
-		-->
 		<div class="accordion" id="AccordionContainer">
 			<div class="card">
 				<div class="card-header">

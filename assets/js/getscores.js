@@ -10,11 +10,8 @@ function get_tipscores()
         type: "GET", //we are using GET method to get all record from the server
         url: 'ajax/getusers.php', // get the route value
         async: false,
+		dataType: "json",
 		success: function (response) {//once the request successfully process to the server side it will return result here
-            
-            // Parse the json result
-        	response = JSON.parse(response);
-
             // Check if there is available records
             if(response.length) {
                 // Loop the parsed JSON
@@ -38,10 +35,8 @@ function get_tipscores()
         type: "GET", //we are using GET method to get all record from the server
         url: 'ajax/getresults.php?p=events', // get the route value
         async: false,
+		dataType: "json",
 		success: function (response) {//once the request successfully process to the server side it will return result here
-            // Parse the json result
-        	response = JSON.parse(response);
-
             // Check if there is available records
             if(response.length) {
                 // Loop the parsed JSON
@@ -61,44 +56,36 @@ function get_tipscores()
         type: "GET", //we are using GET method to get all record from the server
         url: 'ajax/calcscores.php',	// achtung: calcscores.php erzeugt hier JSON parse Fehler !!! (war nur wegen zuviel echo am schluss :-)
         async: false,
+		dataType: "json",
 		success: function (response) {//once the request successfully process to the server side it will return result here
-            // Parse the json result
-        	try {
-				response = JSON.parse(response);
-			}
-			catch (e) {
-				console.err(e);
-				// Return a default object, or null based on use case.
-				response = null;	//	return {}
-			}
-
-            var html = "";
+			var html = "";
             // Check if there is available records
 			var Location = '';
-            if(response.length) {
-            	html += '<div class="list-group">';
-				html += '<table>'
-				html += "<tr><th>" + 'Event' +'</th><th>'+ 'Name' + '</th><th>' + 'Punkte' + "</th></tr>";
-	            //	Loop the parsed JSON
-				//	console.log(response);
-	            var stop = false;
-				$.each(response, function(key,value) {
-					if (value.Score > 0) {
-						if ((races[value.EID] != (Location))) {
-							html += "<tr><td>" + races[value.EID] + '</td><td>' + users[value.UID] +'</td><td>' + value.Score + "</td></tr>";
-							Location = races[value.EID];
-						}	else	{
-							html += "<tr><td>" + '</td><td>' + users[value.UID] +'</td><td>' + value.Score + "</td></tr>";
+            try {
+				if(response.length) {
+					html += '<div class="list-group">';
+					html += '<table>'
+					html += "<tr><th>" + 'Event' +'</th><th>'+ 'Name' + '</th><th>' + 'Punkte' + "</th></tr>";
+					//	Loop the parsed JSON
+					$.each(response, function(key,value) {
+						// console.log(response);
+						if (value.Score > 0) {
+							if ((races[value.EID] != (Location))) {
+								html += "<tr><td>" + races[value.EID] + '</td><td>' + users[value.UID] +'</td><td>' + value.Score + "</td></tr>";
+								Location = races[value.EID];
+							}	else	{
+								html += "<tr><td>" + '</td><td>' + users[value.UID] +'</td><td>' + value.Score + "</td></tr>";
+							}
 						}
-					}
-				});
-	            html += '</table>'
-	            html += '</div>';
-            } else {
-            	html += '<div class="alert alert-warning">';
-				html += 'No records found!';
-				html += '</div>';
-            }
+					});
+					html += '</table>'
+					html += '</div>';
+				} else {
+					console.log('No score records found!');
+				}
+			} catch (err) {
+				console.log("Error:", err.message);
+			}
             // Insert the HTML Template and display all results records
 			$("#scores-list").html(html);
         }
