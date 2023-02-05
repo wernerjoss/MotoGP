@@ -25,7 +25,7 @@ function get_tipscores()
 				//	console.log(users);
 	        } else {
             	html += '<div class="alert alert-warning">';
-				html += 'No records found!';
+				html += 'No user records found!';
 				html += '</div>';
             }
         }
@@ -47,7 +47,7 @@ function get_tipscores()
 				// console.log(races);
 	        } else {
             	html += '<div class="alert alert-warning">';
-				html += 'No records found!';
+				html += 'No event records found!';
 				html += '</div>';
             }
         }

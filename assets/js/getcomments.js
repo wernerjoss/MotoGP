@@ -23,7 +23,7 @@ function getcomments()
 				$("#Vorname").html(Vorname);
 	        } else {
             	html += '<div class="alert alert-warning">';
-				html += 'No records found!';
+				html += 'No user records found!';
 				html += '</div>';
             }
         }
@@ -40,7 +40,7 @@ function getcomments()
                 // Loop the parsed JSON
 	            var stop = false;
 	            $.each(response, function(key,value) {
-	            	if (stop === false) {
+	            	if (!stop) {
 						deadline = value.Deadline;
 						dld = value.Deadline.split(" ");
 						evdate = dld[0];	//	value.Deadline;
@@ -59,7 +59,7 @@ function getcomments()
 			    });
 	        } else {
             	html += '<div class="alert alert-warning">';
-				html += 'No records found!';
+				html += 'No event records found!';
 				html += '</div>';
             }
         }
@@ -86,7 +86,7 @@ function getcomments()
 					if (value.EID == EID)	// nur Kommentare für bearbeitbaren Event anzeigen
 						html += "<tr><td>" + users[value.UID] + '</td><td>' + value.Date + '</td><td>' + value.Comment + "</td></tr>";
 					*/
-					if (stop === false) {
+					if (!stop) {
 						if ((races[value.EID] != (Location))) {
 							html += "<tr><td>" + races[value.EID] +'</td><td>' + users[value.UID] + '</td><td>' + value.Date + '</td><td>' + value.Comment + "</td></tr>";
 							Location = races[value.EID];

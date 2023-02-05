@@ -22,7 +22,7 @@ function getusers()
 				$("#Vorname").html(Vorname);
 	        } else {
             	html += '<div class="alert alert-warning">';
-				html += 'No records found!';
+				html += 'No user records found!';
 				html += '</div>';
             }
         }

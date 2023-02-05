@@ -24,7 +24,7 @@ function gettips()
 					races[value.EID] = value.Ort;
 					users[value.UID] = value.Vorname + ' ' + value.Name;
 					// Our results list template
-					if (stop === false) {
+					if (!stop) {
 						//	html += "<tr><td>" + races[value.EID] +'</td><td>' + users[value.UID] + '</td><td>' + value.P1 + '</td><td>' + value.P2 + '</td><td>' + value.P3 + "</td></tr>";
 						html += "<tr><td>" + value.Ort +'</td><td>' + value.Name + '</td><td>' + value.P1 + '</td><td>' + value.P2 + '</td><td>' + value.P3 + "</td></tr>";
 					}

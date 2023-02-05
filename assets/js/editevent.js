@@ -20,7 +20,7 @@ function getresults()
 	            var stop = false;
 	            $.each(response, function(key,value) {
 	            	// Our results list template
-					if (stop === false) {
+					if (!stop) {
 						dld = value.Deadline.split(" ");
 						evdate = dld[0];	//	value.Deadline;
 						html += "<tr><td>" + value.Ort +'</td><td>' + value.EID + '</td><td>' + evdate + '</td><td>' + value.P1 + '</td><td>' + value.P2 + '</td><td>' + value.P3 + "</td></tr>";

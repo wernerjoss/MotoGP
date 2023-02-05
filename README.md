@@ -26,12 +26,12 @@ Nach der Deadline verschwindet das Eingabeformular bis zum Rennende (s.o.).
 
 ## 2023: Sprint Races am Samstag
 Ab 2023 gibt es neu an jedem Rennwochendende samstags ein sog. Sprint Race mit halber Punkevergabe und halber Renndistanz des Hauptrennens am Sonntag.  
-Siehe auch TODO.md.  
-AB Version 0.2.0 werden dies wie folgt behandelt:
+Siehe auch [TODO.md](./TODO.md).  
+Ab Version 0.2.0 werden diese wie folgt behandelt:
 - Ein richtiger Tip (P1..P3) im Sprintrennen gibt wie bisher einen Punkt
 - Ein richtiger Tip (P1..P3) im Hauptrennen gibt nun 2 Punkte
-- die Tipabgabe für das folgende Rennen (Sprint oder Main) ist immer 1 Stunde nach Ende des vorherigen möglich, auch wenn dessen Ergebnis noch nicht eingetragen ist.
-- Dies ist deswegen so, weil ja das Hauptrennen schon am folgenden Tag stattfindet und ich nicht garantieren kann, dass das Ergebnis des Sprintrennens immer sofort nach dessen Ende eingetragen wird (nach der bisherigen Logik war vorher keine Tipeingabe für das nächste Rennen möglich)
+- die Tipabgabe für das folgende Rennen (Sprint oder Hauptrennen) ist immer 2 Stunden nach Ende der Deadline des vorherigen möglich, auch wenn dessen Ergebnis noch nicht eingetragen ist.
+- Dies ist deswegen so, weil das Hauptrennen schon am folgenden Tag stattfindet und ich nicht garantieren kann, dass das Ergebnis des Sprintrennens immer sofort nach dessen Ende eingetragen wird (nach der bisherigen Logik war vor diesem Eintrag keine Tipeingabe für das nächste Rennen möglich)
 
 
 ## Admin Hinweise

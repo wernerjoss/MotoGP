@@ -24,7 +24,7 @@ function get_tipresults()
 			    });
 	        } else {
             	html += '<div class="alert alert-warning">';
-				html += 'No records found!';
+				html += 'No user records found!';
 				html += '</div>';
             }
         }
@@ -45,7 +45,7 @@ function get_tipresults()
 			    });
 	        } else {
             	html += '<div class="alert alert-warning">';
-				html += 'No records found!';
+				html += 'No event records found!';
 				html += '</div>';
             }
         }
@@ -68,7 +68,7 @@ function get_tipresults()
 				var stop = false;
 	            $.each(response, function(key,value) {
 	            	// Our results list template
-					if (stop === false) {
+					if (!stop) {
 						if ((races[value.EID] != (Location))) {
 							html += "<tr><td>" + races[value.EID] +'</td><td>' + users[value.UID] + '</td><td>' + value.P1 + '</td><td>' + value.P2 + '</td><td>' + value.P3 + "</td></tr>";
 							Location = races[value.EID];
@@ -78,6 +78,7 @@ function get_tipresults()
 					}
 					if (value.P1 === null) {
 						stop = true;
+						return false;	// quit $.each loop
 					}
 	            });
 	            html += '</table>'
