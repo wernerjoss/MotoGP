@@ -23,10 +23,37 @@
 	    
 	    <?php
 			$Nickname = $_GET["nick"];
-			//	Achtung: $Nickname muss in den span id="Nick" !!! (wird von results.js als hidden input ins Formular eingefügt und somit an savetips.php weitergegeben)
+			// remember Nickname as Session var for Convenience (keep 'logged in' Status during Session)
+			if (isset($Nickname))	{ 
+				$_SESSION["nick"] = $Nickname; 
+			}
+			if (isset($_SESSION["nick"])) {
+				$Nickname = $_SESSION["nick"];
+			}
+			//	Achtung: $Nickname muss in den span id="Nickname" !!! (wird von getresults.js als hidden input ins Formular eingefügt und somit an savetips.php weitergegeben)
 			if (isset($Nickname)) {
-				echo '<span id="Nickname" style="display:none">';echo $Nickname;echo '</span>';
-				if (md5("$Nickname") == "0209fffded52973ca4ff82f5333b3de1")		{	// md5 Hash des Superusers :-)
+				// Determine UID from Nickname:
+				$UID = -1;
+				include "../include/connect.php";
+				$mysqli = new mysqli($db_host, $db_user, $db_pw, $db_name);
+				if ($mysqli->connect_errno) {
+					echo "Failed to connect to MySQL: " . $mysqli->connect_error;
+					exit();
+				}
+				$sql = 'SELECT UID FROM MGP_users WHERE Nickname = '."\"$Nickname\"";
+				//	echo $sql;
+				$results = $mysqli->query($sql);
+				$row = $results->fetch_all(MYSQLI_ASSOC);
+				if (is_array($row))	{
+					$UID = $row[0]["UID"];
+				}
+				//	echo "<br>UID:".$UID;
+				$results->free_result();
+				$mysqli->close();
+
+				//	DONE: check for UID=1, NOT md5 Hash from Nickname !
+				if ($UID == 1) {	// 1 = UID des Superusers !
+					echo '<span id="Nickname" style="display:none">';echo $Nickname;echo '</span>';
 					echo '<div class="row">
 					<div class="col-md-4">
 						<h3>Teilnehmer hinzuf&uuml;gen</h3>
@@ -63,6 +90,12 @@
 							<div id="participants-list"></div>
 						</div>
 					</div>';
+				}	else	{
+					echo '<div class="row">
+						<div class="col-md-8">
+						Sorry, kein Zugang hier :-)
+						</div>
+					</div>';	
 				}
 			}	else	{
 				echo '<div class="row">
