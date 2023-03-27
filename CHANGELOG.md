@@ -1,3 +1,9 @@
+# v0.2.1
+##  28.03.2023
+
+1. [](#new)
+    * some more Improvements w.r. to Saturday Sprint Races
+
 # v0.2.0
 ##  28.12.2022
 

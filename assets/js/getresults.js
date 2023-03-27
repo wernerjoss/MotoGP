@@ -87,22 +87,24 @@ function getresults()
 									stop = false;
 								}	else {
 									stop = true;
-									//return false;	// see https://stackoverflow.com/questions/1799284/how-to-break-exit-from-a-each-function-in-jquery
 								}
 							} else	{	// in this case, result is available 
 								EID = value.EID;
 								// lastEvent = value.Ort;
-								stop = true;
+								// stop = true;	// commented 26.03.23
 							}
-							
+							if (!now.isAfter(RaceFinished))	
+								deadline = value.Deadline;	// moved here, deadline is from first unfinished Race, IF not yet RaceFinished ! 25.03.25
 						}	else {
 							EID = value.EID;
 							lastEvent = value.Ort;
 							stop = true;	// important !
 							//return false;
 						}
-						deadline = value.Deadline;
+						if (numUnfinished > 1) stop = true;	// 25.03.23
+						if (now.isAfter(RaceFinished))	deadline = value.Deadline;	// deadline from last unfinished Race 25.03.23
 						lastEvent = value.Ort;
+						console.log("Stop: ", stop);
 					}
 					if (!stop)	{
 						lastEvent = value.Ort;	// Event Liste voll, kein weiteres Rennen !
@@ -123,12 +125,12 @@ function getresults()
 			console.log(deadline);
 			console.log("isAfter:", isAfter);
 			if (isAfter) {
-				// $("#TipForm").attr("hidden",true);
+				$("#TipForm").attr("hidden",true);
 				// console.log("Fin:", fin);
-				if (!fin)	
+				if (!fin)	 {
 					$("#tooLate").attr("hidden",false);
+				}
 				else	{
-					$("#tooLate").attr("hidden",true);
 					$("#finMsg").attr("hidden",false);
 				}
 			}	else	{

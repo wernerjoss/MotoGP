@@ -72,6 +72,7 @@
 		if (strpos($Race, "Sprint") !== false) {	// $Race contains "Sprint"
 			$addsc = 1;	// only 1 point for sprint races 2023
 		}
+		$addsc = 1;	// revert to default, also for Main races 27.03.23	:-)
 		if ($verbose) echo "UserNr:$UID ".$Users[$UID]["Name"]." P1:".$Tip["P1"]." P2:".$Tip["P2"]." P3:".$Tip["P3"]."<br>";
 		if (intval($Tip["P1"]) == intval($Events[$EID]["P1"]))	{
 			$Scores[$EID][$UID] += $addsc;

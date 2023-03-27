@@ -41,19 +41,23 @@ function getcomments()
 	            var stop = false;
 	            $.each(response, function(key,value) {
 	            	if (!stop) {
-						deadline = value.Deadline;
-						dld = value.Deadline.split(" ");
-						evdate = dld[0];	//	value.Deadline;
-						now = moment();
-						CommentDeadline = moment(deadline).add(5, 'd');	// Kommentare bis 5 Tage nach Deadline möglich
-						isAfter = now.isAfter(CommentDeadline);
-						commentEvent = value.Ort + ' ' + evdate;
-						races[value.EID] = value.Ort;
-						EID = value.EID;
-						console.log("Ort: ", commentEvent," EID: ", EID);
-						console.log("Deadline: ", deadline, " CommentDeadline:", CommentDeadline, "isAfter: ", isAfter);
-						if (!isAfter) {	// dies ist der nächste nicht beendete GP
+						if (value.P1 === null) {
 							stop = true;
+						}
+						if (!stop)	{
+							deadline = value.Deadline;
+							dld = value.Deadline.split(" ");
+							evdate = dld[0];	//	value.Deadline;
+							now = moment();
+							CommentDeadline = moment(deadline).add(5, 'd');	// Kommentare bis 5 Tage nach Deadline möglich
+							/*	obsolete 26.03.23
+							isAfter = now.isAfter(CommentDeadline);
+							*/
+							commentEvent = value.Ort + ' ' + evdate;
+							races[value.EID] = value.Ort;
+							EID = value.EID;
+							console.log("Ort: ", commentEvent," EID: ", EID);
+							console.log("Deadline: ", deadline, " CommentDeadline:", CommentDeadline);
 						}
 					}
 			    });
