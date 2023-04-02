@@ -32,7 +32,7 @@ Ab Version 0.2.0 werden diese wie folgt behandelt:
 - Ein richtiger Tip (P1..P3) im Hauptrennen gibt nun 2 Punkte
 - die Tipabgabe für das folgende Rennen (Sprint oder Hauptrennen) ist immer 2 Stunden nach Ende der Deadline des vorherigen möglich, auch wenn dessen Ergebnis noch nicht eingetragen ist.
 - Dies ist deswegen so, weil das Hauptrennen schon am folgenden Tag stattfindet und ich nicht garantieren kann, dass das Ergebnis des Sprintrennens immer sofort nach dessen Ende eingetragen wird (nach der bisherigen Logik war vor diesem Eintrag keine Tipeingabe für das nächste Rennen möglich)
-
+- 27.03.23: Die Punktevergabe wurde ab Version 0.2.1 wieder auf EINEN Punkt für jeden richtigen Tip geändert :-) - das ist einfach logischer, wenn man schon nicht die Staffelung der WM Wertung (P1=25, P2=20 Punkte usw.) übernimmt.
 
 ## Admin Hinweise
 Zur Installation des Spiels auf einem Webserver wird eine Mysql Datenbank benötigt, diese muss vorab mit dem Dump im Ordner sql
