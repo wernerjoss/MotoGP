@@ -17,12 +17,21 @@
 	  exit();
 	}
 
-	// Set the INSERT SQL data - UID must be AUTO_INCREMENT !
+	$sql = "SELECT UID from MGP_users WHERE 1";
+	$results = $mysqli->query($sql);
+	$uids = $results->fetch_all(MYSQLI_ASSOC);
+	foreach ($uids as $uid)	{
+		if ($verbose)	echo $uid["UID"]."\n";
+	}
+	$lastuid = $uid["UID"] + 1;
+	if ($verbose)	echo "LastUid ".$lastuid;
+	
+	// Set the INSERT SQL data - UID must be AUTO_INCREMENT !	02.04.23: calculate new UID 
 	$sql = "INSERT INTO MGP_users (UID, Name, Vorname, Nickname, Email, Passwort)
-	VALUES (NULL,'".$name."', '".$firstname."','".$nickname."', '".$email."', '".$password."')";
-
+	VALUES ('".$lastuid."','".$name."', '".$firstname."','".$nickname."', '".$email."', '".$password."')";
+	
 	if ($verbose)	echo ("sql:".$sql."\n");
-	//	return;
+	
 	// Process the query so that we will save the date of birth
 	if ($mysqli->query($sql)) {
 	  echo "Participant has been created successfully.";

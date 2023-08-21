@@ -4,6 +4,7 @@
 	$p1 = $request['P1'];
 	$p2 = $request['P2'];
 	$p3 = $request['P3'];
+	$DL = $request['Deadline'];
 	
 	include "../include/connect.php";
 	
@@ -14,18 +15,19 @@
 	  exit();
 	}
 
-	// Set the INSERT SQL data
-	/*
-	$sql = "INSERT INTO MGP_users (UID, Name, Nickname, Vorname, Email, Passwort)
-		VALUES (NULL,'".$name."', '".$firstname."','".$nickname."', '".$email."', '".$password."')";
-	*/
-	$sql = "UPDATE MGP_events SET P1=".$p1." , P2=".$p2.", P3=".$p3." WHERE EID=".$eid;
-	echo $sql;
-	// Process the query so that we will save the date of birth
-	if ($mysqli->query($sql)) {
-	  echo "Event has been updated successfully.";
-	} else {
-	  return "Error: " . $sql . "<br>" . $mysqli->error;
+	$sql = null;
+	if (strlen($p1) > 0)
+		$sql = "UPDATE MGP_events SET P1=".$p1." , P2=".$p2.", P3=".$p3." WHERE EID=".$eid;
+	if (strlen($DL) > 0)
+		$sql = "UPDATE MGP_events SET Deadline='".$DL."' WHERE EID=".$eid;
+	if (strlen($sql) > 0)	{
+		echo $sql;
+		// Process the query so that we will save the date of birth
+		if ($mysqli->query($sql)) {
+			echo "Event has been updated successfully.";
+		} else {
+			return "Error: " . $sql . "<br>" . $mysqli->error;
+		}
 	}
 
 	// Close the connection after using it

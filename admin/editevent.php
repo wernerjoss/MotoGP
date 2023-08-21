@@ -56,8 +56,7 @@
 					echo '<span id="Nickname" style="display:none">';echo $Nickname;echo '</span>';
 					echo '<div class="row">
 					<div class="col-md-4">
-						<h3>Ergebnis hinzufügen</h3>
-
+						<h3>Ergebnis hinzufügen oder Deadline ändern (nur eins !)</h3>
 						<form action="saveevent.php" id="form">
 							<div class="form-group">
 								<label for="EID">EID</label>
@@ -74,6 +73,10 @@
 							<div class="form-group">
 								<label for="P3">P3</label>
 								<input class="form-control" type="text" name="P3">
+							</div>
+							<div class="form-group">
+								<label for="Deadline">Deadline YYYY-MM-DD hh:mm:ss</label>
+								<input class="form-control" type="text" name="Deadline">
 							</div>
 							<button type="button" class="btn btn-primary" id="btnSubmit">Submit</button>
 						</form>

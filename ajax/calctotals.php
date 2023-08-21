@@ -50,7 +50,9 @@
 	//	return;
 	
 	$Totals = array();
-	for ($UID = 0; $UID < $numUsers; $UID++) {
+	//	for ($UID = 0; $UID <= $numUsers; $UID++) {
+	foreach ($Users as $User)	{	// fix not all Users listed in Totals 21.08.23
+		$UID = $User["UID"];
 		$Totals[$UID] = 0;
 	}
 	$sql = "TRUNCATE TABLE MGP_totals";
@@ -65,7 +67,8 @@
 		echo json_encode($Totals);
 	}
 	//	return;
-	for ($UID = 1; $UID <= $numUsers; $UID ++) {
+	foreach ($Users as $User)	{	// fix not all Users listed in Totals 21.08.23
+		$UID = $User["UID"];
 		$uid = $UID - 1;
 		$tscore = $Totals["$uid"];
 		/*
