@@ -17,7 +17,11 @@ function getusers()
 	            $.each(response, function(key,value) {
 	            	// Our participants list template
 					html += '<a href="#" class="list-group-item list-group-item-action">';
-					html += "<p>" + value.Vorname +' '+ value.Name + ' '+ value.Nickname + " <span class='list-email'>(" + value.Email + ")</span>" + "</p>";
+					// construct and display Link for this user:
+					userlink = window.location.href.replace("admin/adduser.php","");
+					parts = userlink.split("=");
+					userlink = parts[0] + "=" + value.Nickname;
+					html += "<p>" + value.Vorname +' '+ value.Name + ' '+ value.Nickname + " <span class='list-email'>(" + value.Email + ")</span>" + "<a href=" + userlink + ">" + userlink + "</a></p>";
 					//	html += "<p class='list-password'>" + value.Passwort + "</p>";
 					html += '</a>';
 	            });

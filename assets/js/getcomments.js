@@ -72,8 +72,7 @@ function getcomments()
 	$.ajax({
         type: "GET", //we are using GET method to get all record from the server
         url: 'ajax/getcomments.php', // get the route value
-		//url: 'getresults.php', // get the route value
-        dataType: "json",
+		dataType: "json",
 		success: function (response) {//once the request successfully process to the server side it will return result here
         	console.log("resp.:", response);
             var html = "";

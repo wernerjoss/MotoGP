@@ -4,8 +4,7 @@ function getresults()
 	$.ajax({
         type: "GET", //we are using GET method to get all record from the server
         url: '../ajax/getresults.php', // get the route value
-		//url: 'getresults.php', // get the route value
-        success: function (response) {//once the request successfully process to the server side it will return result here
+		success: function (response) {//once the request successfully process to the server side it will return result here
             // Parse the json result
         	response = JSON.parse(response);
 
