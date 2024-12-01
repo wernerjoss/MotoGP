@@ -14,22 +14,26 @@ session_start();
 	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
 </head>
 <body>
+	<div style="background: url(./assets/img/1070272.webp)" class="page-holder bg-cover"> <!-- see 	https://jsfiddle.net/bootstrapious/vq6pxe78/ -->
 		<div id = "top" class="container">
-		<ul class="nav">
-		<li class="nav-item">
-			<a class="nav-link active" href="./">Home</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" href="comments.php">Kommentare</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" href="riders.html">Fahrerliste</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" href="howto.html">Anleitung</a>
-		</li>
-		</ul>
-		<?php
+			<ul class="nav">
+			<li class="nav-item">
+				<a class="nav-link active" href="./">Home</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="comments.php">Kommentare</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="riders.html">Fahrerliste</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="howto.html">Anleitung</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="https://www.motorsport-magazin.com/motogp/live-ticker.html" target="_blank">MoMag Live Ticker</a>
+			</li>
+			</ul>
+			<?php
 			$Nickname = $_GET["nick"];
 			// remember Nickname as Session var for Convenience (keep 'logged in' Status during Session)
 			if (isset($Nickname))	{ 
@@ -74,9 +78,12 @@ session_start();
 					</ul>					';
 				}
 				echo '<br><br>
-				<h2>Hoernerfranzracing MotoGP Tipspiel 2023</h2>
+				<h2>Hoernerfranzracing MotoGP Tipspiel 2024</h2>
 				<br><br>
 				<h3 id="finMsg" style="display:none">Saisonende - auf ein neues im nächsten Jahr !</h3>
+				<!--
+				<h3 id="finMsg">Saisonende - auf ein neues im nächsten Jahr !</h3>
+				-->
 				<br><br>
 				<div id="TipForm">
 					<div class="row">
@@ -110,7 +117,7 @@ session_start();
 					<p></p>
 				</div>';
 				echo'
-				<div id="tooLate">
+				<div id="tooLate" style="display:none">	<!-- nach Saisonende :-)	-->
 					<div class="row">
 						<div class="col-md-6">
 						<h3>Sorry, du bist zu spät dran, Tips können nur bis zur Deadline abgegeben werden !</h3>
@@ -124,80 +131,81 @@ session_start();
 				</div>
 				</div>';
 			}
-		?>
-		<div class="accordion" id="AccordionContainer">
-			<div class="card">
-				<div class="card-header">
-					<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#results">
-					<h3><i class="fa fa-plus"></i> Rennergebnisse</h3>
-					</button>
-				</div>
-				<div class="collapse show" id="results" data-parent="#AccordionContainer">
-					<div class="card-body">
-						<div class="col-md-8">
-							<div id="results-list"></div>
-						</div>
+			?>
+			<div class="accordion" id="AccordionContainer">
+				<div class="card">
+					<div class="card-header">
+						<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#results">
+						<h3><i class="fa fa-plus"></i> Rennergebnisse</h3>
+						</button>
 					</div>
-					<a class="nav-link" href="#top">-> Seitenanfang</a>
-				</div>
-			</div>
-			<div class="card">
-				<div class="card-header">
-					<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#tips">
-						<h3><i class="fa fa-plus"></i> Tips-Liste</h3>
-					</button>
-				</div>
-				<div class="collapse" id="tips" data-parent="#AccordionContainer">
-					<a class="nav-link" href="#tips-list-bottom">-> Listenende</a>
-					<div class="card-body">
-						<div class="row">
+					<div class="collapse show" id="results" data-parent="#AccordionContainer">
+						<div class="card-body">
 							<div class="col-md-8">
-								<div id="tips-list"></div>
-								<div id = "tips-list-bottom"></div>
-							</div>
-						</div>
-					</div>
-					<a class="nav-link" href="#top">-> Seitenanfang</a>
-				</div>
-			</div>
-			<div class="card">
-				<div class="card-header">
-					<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#scores">
-						<h3><i class="fa fa-plus"></i> Punkte-Liste</h3>
-					</button>
-				</div>
-				<div class="collapse" id="scores" data-parent="#AccordionContainer">
-					<a class="nav-link" href="#scores-list-bottom">-> Listenende</a>
-					<div class="card-body">
-						<div class="row">
-							<div class="col-md-8">
-								<div id="scores-list"></div>
-								<div id = "scores-list-bottom"></div>
+								<div id="results-list"></div>
 							</div>
 						</div>
 						<a class="nav-link" href="#top">-> Seitenanfang</a>
 					</div>
 				</div>
-			</div>
-			<div class="card">
-				<div class="card-header">
-					<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#ranking">
-						<h3><i class="fa fa-plus"></i> Gesamt Punktestand</h3>
-					</button>
-				</div>
-				<div class="collapse" id="ranking" data-parent="#AccordionContainer">
-				<div class="card-body">
-						<div class="row">
-							<div class="col-md-8">
-								<div id="ranking-list"></div>
+				<div class="card">
+					<div class="card-header">
+						<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#tips">
+							<h3><i class="fa fa-plus"></i> Tips-Liste</h3>
+						</button>
+					</div>
+					<div class="collapse" id="tips" data-parent="#AccordionContainer">
+						<a class="nav-link" href="#tips-list-bottom">-> Listenende</a>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-md-8">
+									<div id="tips-list"></div>
+									<div id = "tips-list-bottom"></div>
+								</div>
 							</div>
 						</div>
 						<a class="nav-link" href="#top">-> Seitenanfang</a>
 					</div>
 				</div>
+				<div class="card">
+					<div class="card-header">
+						<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#scores">
+							<h3><i class="fa fa-plus"></i> Punkte-Liste</h3>
+						</button>
+					</div>
+					<div class="collapse" id="scores" data-parent="#AccordionContainer">
+						<a class="nav-link" href="#scores-list-bottom">-> Listenende</a>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-md-8">
+									<div id="scores-list"></div>
+									<div id = "scores-list-bottom"></div>
+								</div>
+							</div>
+							<a class="nav-link" href="#top">-> Seitenanfang</a>
+						</div>
+					</div>
+				</div>
+				<div class="card">
+					<div class="card-header">
+						<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#ranking">
+							<h3><i class="fa fa-plus"></i> Gesamt Punktestand</h3>
+						</button>
+					</div>
+					<div class="collapse" id="ranking" data-parent="#AccordionContainer">
+					<div class="card-body">
+							<div class="row">
+								<div class="col-md-8">
+									<div id="ranking-list"></div>
+								</div>
+							</div>
+							<a class="nav-link" href="#top">-> Seitenanfang</a>
+						</div>
+					</div>
+				</div>
 			</div>
-		</div>
-	</div>
+		</div>	<!-- top container	-->
+	</div>	<!-- background container	-->
 	<!-- Must put our javascript files here to fast the page loading -->
 	<!-- jQuery library local -->
 	<script src="assets/js/jquery-3.6.0.min.js"></script>

@@ -103,6 +103,7 @@ CREATE TABLE `MGP_riders` (
 --
 
 INSERT INTO `MGP_riders` (`RID`, `Name`, `Vorname`) VALUES
+(1, 'Bagnaia', 'Francesco'),
 (5, 'Zarco', 'Johann'),
 (6, 'Bradl', 'Stefan'),
 (10, 'Marini', 'Luca'),
@@ -119,8 +120,7 @@ INSERT INTO `MGP_riders` (`RID`, `Name`, `Vorname`) VALUES
 (43, 'Miller', 'Jack'),
 (44, 'Espargaro', 'Pol'),
 (49, 'diGianantonio', 'Fabio'),
-(57, 'Fernandez', 'Augusto'),
-(63, 'Bagnaia', 'Francesco'),
+(37, 'Fernandez', 'Augusto'),
 (72, 'Bezecchi', 'Marco'),
 (73, 'Marquez', 'Alex'),
 (88, 'Oliveira', 'Miguel'),

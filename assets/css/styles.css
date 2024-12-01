@@ -15,7 +15,7 @@ table tbody tr td:nth-child(2) {
     width: 12rem;
 }
 .nav-link {
-    font-size: 1.2rem;
+    font-size: 1.6rem;
 }
 .h3, h3 {
     font-size: 1.5rem;
@@ -39,3 +39,22 @@ table tbody tr td:nth-child(2) {
     border-collapse: separate;
     border-spacing: 15px;
 }
+
+/*
+*
+* ==========================================
+* CUSTOM UTIL CLASSES for https://jsfiddle.net/bootstrapious/vq6pxe78/
+* ==========================================
+*
+*/
+
+.page-holder {
+    min-height: 80vh;
+    min-width: 100vh;
+}
+  
+.bg-cover {
+    /*  opacity: 0.9;   */
+    background-size: cover !important;
+}
+  
