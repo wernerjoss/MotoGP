@@ -14,7 +14,18 @@ session_start();
 	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
 </head>
 <body>
-	<div style="background: url(./assets/img/1070272.webp)" class="page-holder bg-cover"> <!-- see 	https://jsfiddle.net/bootstrapious/vq6pxe78/ -->
+	<?php 
+	function random_pic($dir)
+	{
+	$files = glob($dir . '/*.*');
+	// echo "Files: ".$files."<br>";
+	$rand_keys = array_rand($files, 5);
+	// echo "Keys: ".$rand_keys."<br>";
+	return $files[$rand_keys[0]];
+	}
+	// echo random_pic("./assets/img")."<br>";	
+	echo '<div style="background: url(';echo random_pic("./assets/img");echo')" class="page-holder bg-cover">';	// random background pic from folder assets/img 15.12.24
+	?>
 		<div id = "top" class="container">
 			<ul class="nav">
 			<li class="nav-item">
@@ -30,7 +41,7 @@ session_start();
 				<a class="nav-link" href="howto.html">Anleitung</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="https://www.motorsport-magazin.com/motogp/live-ticker.html" target="_blank">MoMag Live Ticker</a>
+				<a class="nav-link" href="https://www.motorsport-magazin.com/motogp/live-ticker.html" target="_blank">Live-Ticker</a>
 			</li>
 			</ul>
 			<?php
@@ -76,9 +87,17 @@ session_start();
 						echo '">Add User</a>
 					</li>
 					</ul>					';
+				} elseif ($UID > 1) {
+					echo '
+					<ul class="nav">
+					<li class="nav-item">
+						<a class="nav-link active" href="./archiv.php?nick=';echo $Nickname;
+						echo '">Archiv</a>
+					</li>
+					</ul>					';
 				}
 				echo '<br><br>
-				<h2>Hoernerfranzracing MotoGP Tipspiel 2024</h2>
+				<h2>Hoernerfranzracing MotoGP Tipspiel ';echo date("Y");echo '</h2>
 				<br><br>
 				<h3 id="finMsg" style="display:none">Saisonende - auf ein neues im nächsten Jahr !</h3>
 				<!--

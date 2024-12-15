@@ -6,7 +6,7 @@ session_start();
 <html lang="de">
 <head>
 	<meta charset="UTF-8">
-  	<title>MotoGP Tipspiel - Kommentare</title>
+  	<title>MotoGP Tipspiel - Archiv</title>
   	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="assets/bootstrap-4.4.1/css/bootstrap.min.css">
   	<!-- Page CSS -->
@@ -41,7 +41,7 @@ session_start();
 		</li>
 	</ul>
 	<br><br>
-	<h2>Hoernerfranzracing MotoGP Tipspiel - Kommentare</h2>
+	<h2>Hoernerfranzracing MotoGP Tipspiel - Jahres-Archiv</h2>
 	<br><br>
 	<?php
 			$Nickname = $_GET["nick"];
@@ -61,46 +61,34 @@ session_start();
 						<div class="col-md-6">
 							<span id="Nickname" style="display:none">';echo $Nickname;echo '</span>
 							<h3>Hallo <span id="Vorname"></span></h3>
-							<h4>Dein Kommentar zum GP <span class="Event"></span>:</h4>
-							<h3><span id="Deadline"></span></h3>
-							<form action="ajax/savecomment.php" id="form">
-								<span id="EidUid" style="display:none"></span>
-								<div id="Form" class="row">
-								<div class="col-sm-12">
-									<textarea class="form-control" type="text" rows="4" name="Kommentar"></textarea>
-								</div>
-								<div class="col-sm-4" style="margin-top: 1em;">
-									<button type="button" class="btn btn-primary" id="btnSubmit">Absenden</button>
-									</div>
-								</div>
-							</form>
+							<h4>Hier ist das Archiv der bisherigen Tippspiele:</h4>
 						</div>
 					</div>
 					<p></p>
 				</div>';
-				echo'
-				<div id="tooLate">
-					<div class="row">
-						<div class="col-md-6">
-						<h3>Sorry, du bist zu spät dran, Kommentare können nur bis zur Deadline (= 5 Tage nach Zieleinlauf des GP) abgegeben werden !</h3>
-						</div>
-					</div>
-				</div>';
-			}	else	{
+			} else {
 				echo '<div class="row">
 				<div class="col-md-8">
-				<h3>Hallo Gast, du bist nicht angemeldet und kannst daher keine Kommentare abgeben oder ansehen, sorry.</h3><br>
+				<h3>Hallo Gast, du bist nicht angemeldet und kannst daher das Archiv nicht ansehen, sorry.</h3><br>
 				</div>
 				</div>';
 			}
 		?>
-		<div id="CommentContainer" style="background-color: white;padding: 1em 0 1em 1em;">
-		<h3>Kommentare zu den bisherigen GP's:</h3>
-	    <div class="row">
+		<div id="ArchivContainer" style="background-color: white;padding: 1em 0 1em 1em;">
 			<div class="col-sm-12">
-				<div id="comments-list"></div>
+				<div id="archiv-list" style="font-size: 1.3em;">
+				<div class="row">
+					<a href="./archiv/2022.zip">Archiv 2022</a>
+				</div>
+				<div class="row">
+					<a href="./archiv/2023.zip">Archiv 2023</a>
+				</div>
+				<div class="row">
+					<a href="./archiv/2024.zip">Archiv 2024</a>
+				</div>
+				</div>
+				
 			</div>
-		</div>
 		</div>
 	</div>
 	</div>	<!-- background container	-->
