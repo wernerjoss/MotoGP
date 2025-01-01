@@ -1,12 +1,8 @@
-function gettips() 
+function getwmtip() 
 {
-	// get Tips
-	races = {};
-	users = {};
-				
 	$.ajax({
 		type: "GET", //we are using GET method to get all record from the server
-		url: 'ajax/getresults.php?p=tips', // get the route value
+		url: 'ajax/getresults.php?p=wmtips', // get the route value
 		async: false,
 		success: function (response) {//once the request successfully process to the server side it will return result here
 			// Parse the json result
@@ -16,42 +12,40 @@ function gettips()
 			// Check if there is available records
 			if(response.length) {
 				html += '<div class="list-group">';
-				html += '<table>'
-				html += "<tr><th>" + 'Event' +'</th><th>'+ 'Vorname Name' + '</th><th>' + 'P1' + '</th><th>' + 'P2' + '</th><th>' + 'P3' + "</th></tr>";
+				html += '<h4>Aktuelle Tips:</h4>';
+				html += '<table>';
+				html += "<tr><th>Name</th><th>P1</th><th>P2</th><th>P3</th></tr>";
 				// Loop the parsed JSON
 				var stop = false;
 				$.each(response, function(key,value) {
-					races[value.EID] = value.Ort;
-					users[value.UID] = value.Vorname + ' ' + value.Name;
 					// Our results list template
 					if (!stop) {
-						//	html += "<tr><td>" + races[value.EID] +'</td><td>' + users[value.UID] + '</td><td>' + value.P1 + '</td><td>' + value.P2 + '</td><td>' + value.P3 + "</td></tr>";
-						html += "<tr><td>" + value.Ort +'</td><td>' + value.Name + '</td><td>' + value.P1 + '</td><td>' + value.P2 + '</td><td>' + value.P3 + "</td></tr>";
+						html += "<tr><td>" + value.Vorname + ' ' + value.Name + '</td><td>' + value.P1 + '</td><td>' + value.P2 + '</td><td>' + value.P3 + "</td></tr>";
 					}
-					if (value.P1 === null) {
+					/*
+					if (value.Name === null) {
 						stop = true;
-					}
+					}	*/
 				});
 				html += '</table>'
 				html += '</div>';
-				//	$("#tips-list").html(html);	// comment wichtig !!!
+				$("#wmtips-list").html(html);	// comment wichtig !!!
 			} else {
 				html += '<div class="alert alert-warning">';
-				html += 'No Tips found!';
+				html += 'No WM Tips found!';
 				html += '</div>';
 			}
-			// 
-			
+			//	console.log(html);
 		}
 	});
 }
 
-function submitForm() 
+function submitWmForm() 	// do NOT use submitForm() as this is already defined in savetips.js !
 {
-	$("#btnSubmit").on("click", function() {
-		var $this 		    = $("#btnSubmit"); //submit button selector using ID
+	$("#wmSubmit").on("click", function() {
+		var $this 		    = $("#wmSubmit"); //submit button selector using ID
         var $caption        = $this.html();// We store the html content of the submit button
-        var form 			= "#form"; //defined the #form ID
+        var form 			= "#wmform"; //defined the #wmform ID
         var formData        = $(form).serializeArray(); //serialize the form into array
         var route 			= $(form).attr('action'); //get the route using attribute action
 		console.log("Formdata:", formData);
@@ -67,13 +61,13 @@ function submitForm()
 	            $this.attr('disabled', false).html($caption);
 
 	            // Reload lists of Tips
-	            gettips();	// was: all();
+	            getwmtip();	// was: all();
 
 	            // We will display the result using alert
 	            alert(response);
 
 	            // Reset form
-	            resetForm();
+	            resetWmForm();
 	        },
 	        error: function (XMLHttpRequest, textStatus, errorThrown) {
 	        	// You can put something here if there is an error from submitted request
@@ -82,9 +76,9 @@ function submitForm()
 	});
 }
 
-function resetForm() 
+function resetWmForm() 
 {
-	$('#form')[0].reset();
+	$('#wmform')[0].reset();
 	location.reload();
 }
 
@@ -92,9 +86,9 @@ function resetForm()
 $(document).ready(function() {
 
 	// Get all Tips records
-	gettips();
+	getwmtip();
 
 	// Submit form using AJAX
-	submitForm();
+	submitWmForm();
 	 
 });

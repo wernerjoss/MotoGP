@@ -62,6 +62,12 @@ session_start();
 							<span id="Nickname" style="display:none">';echo $Nickname;echo '</span>
 							<h3>Hallo <span id="Vorname"></span></h3>
 							<h4>Hier ist das Archiv der bisherigen Tippspiele:</h4>
+							<div id="hints">
+							Für jedes Jahr gibt es eine Zip Datei mit den entsprechenden Auswertungen, leider können diese wegen Sicherheitseinstellungen des Webservers nicht direkt als <name>.zip angeboten werden (da gibt es einen Zugriffsfehler).<br>
+							Deswegen heissen die Dateien z.B. 2022.archiv usw., diese können ohne Probleme abgerufen und lokal gespeichert werden.<br>
+							Windows-User müssen die gespeicherte Datei dann umbenennen: z.B. 2022.archiv -> 2022.zip.<br>
+							Danach entpacken wie gewohnt (bei Linux ist das nicht erforderlich, das ist schlau genug und erkennt dass es sich hier um Zip Dateien handelt).
+							</div>
 						</div>
 					</div>
 					<p></p>
@@ -78,13 +84,13 @@ session_start();
 			<div class="col-sm-12">
 				<div id="archiv-list" style="font-size: 1.3em;">
 				<div class="row">
-					<a href="./archiv/2022.zip">Archiv 2022</a>
+					<a href="./archiv/2022.archiv">Archiv 2022</a>
 				</div>
 				<div class="row">
-					<a href="./archiv/2023.zip">Archiv 2023</a>
+					<a href="./archiv/2023.archiv">Archiv 2023</a>
 				</div>
 				<div class="row">
-					<a href="./archiv/2024.zip">Archiv 2024</a>
+					<a href="./archiv/2024.archiv">Archiv 2024</a>
 				</div>
 				</div>
 				

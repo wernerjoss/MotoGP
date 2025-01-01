@@ -1,3 +1,9 @@
+# v0.3.0
+##  18.12.2024
+
+1. [](#new)
+    * Tips for Final Championship Result added
+
 # v0.2.1
 ##  28.03.2023
 

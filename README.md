@@ -34,6 +34,12 @@ Ab Version 0.2.0 werden diese wie folgt behandelt:
 - Dies ist deswegen so, weil das Hauptrennen schon am folgenden Tag stattfindet und ich nicht garantieren kann, dass das Ergebnis des Sprintrennens immer sofort nach dessen Ende eingetragen wird (nach der bisherigen Logik war vor diesem Eintrag keine Tipeingabe für das nächste Rennen möglich)
 - 27.03.23: Die Punktevergabe wurde ab Version 0.2.1 wieder auf EINEN Punkt für jeden richtigen Tip geändert :-) - das ist einfach logischer, wenn man schon nicht die Staffelung der WM Wertung (P1=25, P2=20 Punkte usw.) übernimmt.
 
+## 2025: Tip für den WM Endstand
+Ab Version 0.3.0 ist **VOR** der Saison ein Tip auf den WM-Endstand möglich - P1 bis P3 wie bei den Rennen.  
+Die aktuellen Tips der Teilnehmer werden live angezeigt und können bis zur angezeigten Deadline geändert werden.  
+Tips für das erste Rennen sind erst **NACH** dieser Deadline möglich !  
+Anmerkung: Die Punktevergabe für den Endstand ist aktuell (12/24) noch nicht festgelegt, ebenso wenig deren möglichen Einfluss auf die Jahresendwertung des Tipspiels.
+
 ## Admin Hinweise
 Zur Installation des Spiels auf einem Webserver wird eine Mysql Datenbank benötigt, diese muss vorab mit dem Dump im Ordner sql
 befüllt werden, alle Tabellen haben das Prefix MGP_.  

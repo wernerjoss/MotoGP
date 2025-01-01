@@ -18,7 +18,7 @@ session_start();
 	{
 	$files = glob($dir . '/*.*');
 	// echo "Files: ".$files."<br>";
-	$rand_keys = array_rand($files, 5);
+	$rand_keys = array_rand($files, 3);
 	// echo "Keys: ".$rand_keys."<br>";
 	return $files[$rand_keys[0]];
 	}

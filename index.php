@@ -19,7 +19,7 @@ session_start();
 	{
 	$files = glob($dir . '/*.*');
 	// echo "Files: ".$files."<br>";
-	$rand_keys = array_rand($files, 5);
+	$rand_keys = array_rand($files, 3);
 	// echo "Keys: ".$rand_keys."<br>";
 	return $files[$rand_keys[0]];
 	}
@@ -72,6 +72,14 @@ session_start();
 				}
 				//	echo "<br>UID:".$UID;
 				$results->free_result();
+				// get Deadline for WM Tip:
+				$sql = 'SELECT Deadline FROM MGP_champ';
+				$results = $mysqli->query($sql);
+				$row = $results->fetch_all(MYSQLI_ASSOC);
+				if (is_array($row))	{
+					$WmDl = $row[0]["Deadline"];
+				}
+				$results->free_result();
 				$mysqli->close();
 
 				//	DONE: check for UID=1, NOT md5 Hash from Nickname !
@@ -98,43 +106,82 @@ session_start();
 				}
 				echo '<br><br>
 				<h2>Hoernerfranzracing MotoGP Tipspiel ';echo date("Y");echo '</h2>
-				<br><br>
 				<h3 id="finMsg" style="display:none">Saisonende - auf ein neues im nächsten Jahr !</h3>
-				<!--
-				<h3 id="finMsg">Saisonende - auf ein neues im nächsten Jahr !</h3>
-				-->
-				<br><br>
-				<div id="TipForm">
-					<div class="row">
-						<div class="col-md-6">
-							<span id="Nickname" style="display:none">';echo $Nickname;echo '</span>
-							<h3>Hallo <span id="Vorname"></span></h3>
-							<h3>Dein Tip für MotoGP Race</h3><h3><span id="Event"></span></h3><h3><span id="Deadline"></span></h3>
-							<form action="ajax/savetips.php" id="form">
-								<span id="EidUid" style="display:none"></span>
-								<div id="TipForm" class="row">
-								<div class="col-sm-4">
-									<label for="P1">P1</label>
-									<input class="form-control" type="text" name="P1">
-								</div>
-								<div class="col-sm-4">
-									<label for="P2">P2</label>
-									<input class="form-control" type="text" name="P2">
-								</div>
-								<div class="col-sm-4">
-									<label for="P3">P3</label>
-									<input class="form-control" type="text" name="P3">
-								</div>
-									<div class="col-sm-4" style="margin-top: 1em;">
-									<button type="button" class="btn btn-primary" id="btnSubmit">Absenden</button>
+				<span id="Nickname" style="display:none">';echo $Nickname;echo '</span>';
+				$d = date("Y-m-d m:s");
+				//	echo ("Date:" . $d . " DL: " . $WmDl);
+				if ($d < $WmDl) {
+					echo '
+					<div id="WmTipForm"> <!-- TODO: only show this until WmDeadline reached 	-->
+						<div class="row">
+							<div class="col-md-6">
+								<h3>Hallo <span id="Vorname"></span></h3>
+								<h3>Dein Tip für den MotoGP Endstand 2025</h3><h3><span id="WmDeadline">Deadline: ';echo $WmDl;echo '</span></h3>
+								<h4>Zur Beachtung: Tips für das erste Rennen sind erst <strong>NACH</strong> der o.g. Deadline möglich!</h4>
+								<form action="ajax/savewmtip.php?Nickname=';echo $Nickname;echo '" id="wmform">
+									<span id="Uid" style="display:none"></span>
+									<div id="WmTipForm" class="row">
+										<div class="col-sm-2">
+											<label for="P1">P1</label>
+											<input class="form-control" type="text" name="P1">
+										</div>
+										<div class="col-sm-2">
+											<label for="P2">P2</label>
+											<input class="form-control" type="text" name="P2">
+										</div>
+										<div class="col-sm-2">
+											<label for="P3">P3</label>
+											<input class="form-control" type="text" name="P3">
+										</div>
 									</div>
-								</div>
-							</form>
-							<h3 style="margin-top:1em;">Achtung: in die Eingabefelder dürfen NUR Startnummern eingetragen werden, KEINE Namen !</h3>
+									<div class="row">
+										<div class="col-sm-2" style="margin-top: 1em;">
+											<button type="button" class="btn btn-primary" id="wmSubmit">Absenden</button>
+										</div>
+									</div>
+								</form>
+							</div>
 						</div>
-					</div>
-					<p></p>
-				</div>';
+						<div class="row">
+							<div class="col-md-8">
+								<div id="wmtips-list"></div>
+							</div>
+						</div>
+					</div>';
+				} else {
+					echo '
+					<div id="TipForm">	<!-- TODO: only show this from WmDeadline 	-->
+						<div class="row">
+							<div class="col-md-6">
+								<h3>Dein Tip für MotoGP Race</h3><h3><span id="Event"></span></h3><h3><span id="Deadline"></span></h3>
+								<form action="ajax/savetips.php" id="form">
+									<span id="EidUid" style="display:none"></span>
+									<div id="TipForm" class="row">
+										<div class="col-sm-2">
+											<label for="P1">P1</label>
+											<input class="form-control" type="text" name="P1">
+										</div>
+										<div class="col-sm-2">
+											<label for="P2">P2</label>
+											<input class="form-control" type="text" name="P2">
+										</div>
+										<div class="col-sm-2">
+											<label for="P3">P3</label>
+											<input class="form-control" type="text" name="P3">
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-2" style="margin-top: 1em;">
+											<button type="button" class="btn btn-primary" id="btnSubmit">Absenden</button>
+										</div>
+									</div>
+								</form>
+								<h3 style="margin-top:1em;">Achtung: in die Eingabefelder dürfen NUR Startnummern eingetragen werden, KEINE Namen !</h3>
+							</div>
+						</div>
+						<p></p>
+					</div>'; 
+				}
 				echo'
 				<div id="tooLate" style="display:none">	<!-- nach Saisonende :-)	-->
 					<div class="row">
@@ -237,6 +284,7 @@ session_start();
 	<script src="assets/js/gettips.js"></script>
 	<script src="assets/js/getscores.js"></script>
 	<script src="assets/js/gettotals.js"></script>
+	<script src="assets/js/savewmtip.js"></script>
 	<script src="assets/js/savetips.js"></script>
 	<script>
 	$(document).ready(function(){

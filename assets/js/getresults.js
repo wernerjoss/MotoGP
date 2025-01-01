@@ -49,7 +49,7 @@ function getresults()
 	        // Check if there is available records
             var now = moment();
 			if(response.length) {
-            	// console.log(response);
+            	// console.log(response);	// comment out !
 				html += '<div class="list-group">';
 	            html += '<table>'
 				html += "<tr><th>" + 'Event' +'</th><th>'+ 'Datum' + '</th><th>' + 'P1' + '</th><th>' + 'P2' + '</th><th>' + 'P3' + "</th></tr>";
