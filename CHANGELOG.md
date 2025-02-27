@@ -1,3 +1,9 @@
+# v0.3.1
+##  27.02.2025
+
+1. [](#new)
+    * Adjustments for Final Championship Result
+
 # v0.3.0
 ##  18.12.2024
 
