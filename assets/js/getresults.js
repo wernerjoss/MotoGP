@@ -24,6 +24,7 @@ function getusers()
             	html += '<div class="alert alert-warning">';
 				html += 'No user records found!';
 				html += '</div>';
+				console.log('No user records found!');
             }
         }
     });
@@ -37,7 +38,8 @@ function getresults()
 	var deadline = null;
 	$.ajax({
         type: "GET", //we are using GET method to get all record from the server
-        url: 'ajax/getresults.php', // get the route value
+        url: 'ajax/getresults.php?p=events', // NOT just 'ajax/getresults.php' !! 05.01.24
+		async: false,
 		dataType: "json",	// no need for JSON.parse() anymore !
 		success: function (response) {//once the request successfully process to the server side it will return result here
             var html = "";
@@ -49,7 +51,7 @@ function getresults()
 	        // Check if there is available records
             var now = moment();
 			if(response.length) {
-            	// console.log(response);	// comment out !
+            	// console.log('MGP_events: ', response);	// comment out !
 				html += '<div class="list-group">';
 	            html += '<table>'
 				html += "<tr><th>" + 'Event' +'</th><th>'+ 'Datum' + '</th><th>' + 'P1' + '</th><th>' + 'P2' + '</th><th>' + 'P3' + "</th></tr>";
@@ -104,7 +106,7 @@ function getresults()
 						if (numUnfinished > 1) stop = true;	// 25.03.23
 						if (now.isAfter(RaceFinished))	deadline = value.Deadline;	// deadline from last unfinished Race 25.03.23
 						lastEvent = value.Ort;
-						console.log("Stop: ", stop);
+						//	console.log("Stop: ", stop);
 					}
 					if (!stop)	{
 						lastEvent = value.Ort;	// Event Liste voll, kein weiteres Rennen !
@@ -116,8 +118,9 @@ function getresults()
 				html += '</table>'
 	            html += '</div>';
 	            html += '</div>';
+				// console.log(html);
             } else {
-            	console.log('No score records found!');
+            	console.log('No Event records found!');
             }
             // Insert the HTML Template and display all results records
 			isAfter = now.isAfter(deadline);	//	RaceFinished);

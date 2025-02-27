@@ -108,16 +108,16 @@ session_start();
 				<h2>Hoernerfranzracing MotoGP Tipspiel ';echo date("Y");echo '</h2>
 				<h3 id="finMsg" style="display:none">Saisonende - auf ein neues im nächsten Jahr !</h3>
 				<span id="Nickname" style="display:none">';echo $Nickname;echo '</span>';
-				$d = date("Y-m-d m:s");
+				date_default_timezone_set('Europe/Berlin');
+				$d = date("Y-m-d H:i:s");	// finally, correct 23.02.25 :-)
 				//	echo ("Date:" . $d . " DL: " . $WmDl);
 				if ($d < $WmDl) {
 					echo '
-					<div id="WmTipForm"> <!-- TODO: only show this until WmDeadline reached 	-->
+					<div id="WmTipForm"> <!-- DONE: only show this until WmDeadline reached 	-->
 						<div class="row">
 							<div class="col-md-6">
 								<h3>Hallo <span id="Vorname"></span></h3>
 								<h3>Dein Tip für den MotoGP Endstand 2025</h3><h3><span id="WmDeadline">Deadline: ';echo $WmDl;echo '</span></h3>
-								<h4>Zur Beachtung: Tips für das erste Rennen sind erst <strong>NACH</strong> der o.g. Deadline möglich!</h4>
 								<form action="ajax/savewmtip.php?Nickname=';echo $Nickname;echo '" id="wmform">
 									<span id="Uid" style="display:none"></span>
 									<div id="WmTipForm" class="row">
@@ -147,12 +147,18 @@ session_start();
 								<div id="wmtips-list"></div>
 							</div>
 						</div>
+						<div class="row">
+							<div class="col-md-6">
+									<h4>Zur Beachtung: Tips für das erste Rennen sind erst <strong>NACH</strong> der o.g. Deadline möglich!</h4>
+							</div>
+						</div>
 					</div>';
 				} else {
 					echo '
 					<div id="TipForm">	<!-- TODO: only show this from WmDeadline 	-->
 						<div class="row">
 							<div class="col-md-6">
+								<h3>Hallo <span id="Vorname"></span></h3>
 								<h3>Dein Tip für MotoGP Race</h3><h3><span id="Event"></span></h3><h3><span id="Deadline"></span></h3>
 								<form action="ajax/savetips.php" id="form">
 									<span id="EidUid" style="display:none"></span>
@@ -269,6 +275,27 @@ session_start();
 						</div>
 					</div>
 				</div>
+				<?php
+				if (isset($Nickname)) 
+				echo '
+				<div class="card">
+					<div class="card-header">
+						<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#ranking">
+							<h3><i class="fa fa-plus"></i> Endstand 2025</h3>
+						</button>
+					</div>
+					<div class="collapse" id="ranking" data-parent="#AccordionContainer">
+					<div class="card-body">
+							<div class="row">
+								<div class="col-md-8">
+									<div id="wmtips-list"></div>
+								</div>
+							</div>
+							<a class="nav-link" href="#top">-> Seitenanfang</a>
+						</div>
+					</div>
+				</div>';
+				?>
 			</div>
 		</div>	<!-- top container	-->
 	</div>	<!-- background container	-->

@@ -42,6 +42,7 @@ function get_tipresults()
 	            $.each(response, function(key,value) {
 	            	// Our results list template
 					races[value.EID] = value.Ort;
+					// console.log(races[value.EID]);
 			    });
 	        } else {
             	html += '<div class="alert alert-warning">';
